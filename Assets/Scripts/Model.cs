@@ -14,5 +14,18 @@ public static class Model {
 								738, 762, 762, 762, 785, 785, 785, 808, 808, 808, 831, 831, 831, 854, 854, 854, 877, 877, 877, 900};	
 	public static int[] penetrationList = {600, 600, 623, 623, 623, 646, 646, 646, 669, 669, 669, 692, 692, 692, 715, 715, 715, 738, 738, 738,
 									762, 762, 762, 785, 785, 785, 808, 808, 808, 831, 831, 831, 854, 854, 854, 877, 877, 877, 900, 900};
+	public static List<ItemDefinition> itemsDefs = new List<ItemDefinition>();
 
+	static Model() {
+		itemsDefs.Add(new ItemDefinition("Оружие 1, тир 1", ItemType.WEAPON, 40,new int[] {},new int[]{9,18,27,36,45,54,63,72,81,90,99,108,117,126,135,144,153,162,171,180,189,198,207,216,225,234,243,252,261,270,279,288,297,306,315,324,333,342,351,360},new int[]{},new int[]{}));
+	}
+
+	public static ItemDefinition getItemDef(string name) {
+		foreach (ItemDefinition item in itemsDefs) {
+			if (name == item.name) {
+				return item;
+			}
+		}
+		return null;
+	}
 }

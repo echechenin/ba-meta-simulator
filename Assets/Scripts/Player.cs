@@ -15,13 +15,13 @@ public static class Player {
 
 	public static List<Hero> heroes = new List<Hero>();
 	public static List<Slot> dropTeam = new List<Slot> ();
-	public static Hashtable inventory;
+	public static Dictionary<Item,int> inventory = new Dictionary<Item,int>();
 
 
 	//starting Data
 	static Player() {
 		heroes.Add (new Hero ("Lyndra"));
-		heroes [0].equippeditems[0] = new Item ("Оружие 1, тир 1");
+		heroes [0].equipItem (new Item("Оружие 1, тир 1"), 0);
 		heroes.Add (new Hero ("Rosinant"));
 		dropTeam.Add (new Slot(heroes[0]));
 		dropTeam.Add (new Slot(heroes[1]));

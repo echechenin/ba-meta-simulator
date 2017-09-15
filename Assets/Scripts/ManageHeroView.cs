@@ -33,12 +33,11 @@ public class ManageHeroView : MonoBehaviour {
 		ratingLabel.text = Player.rating.ToString ();
 		leagueLabel.text = "Лига " + Player.league.ToString ();
 
-		health.text = Model.healthList [Model.selectedHero.level - 1].ToString ();
-		strength.text = Model.strengthList [Model.selectedHero.level - 1].ToString ();
-		defense.text = Model.defenseList [Model.selectedHero.level - 1].ToString ();
-		penetration.text = Model.penetrationList [Model.selectedHero.level - 1].ToString ();
-		power.text = (Model.healthList [Model.selectedHero.level - 1] + Model.strengthList [Model.selectedHero.level - 1] * 10 / 6 +
-						Model.defenseList [Model.selectedHero.level - 1] * 10 / 6 + Model.penetrationList [Model.selectedHero.level - 1] * 10 / 6).ToString ();
+		health.text = Model.selectedHero.health.ToString ();
+		strength.text = Model.selectedHero.strength.ToString ();
+		defense.text = Model.selectedHero.defense.ToString ();
+		penetration.text = Model.selectedHero.penetration.ToString ();
+		power.text = Model.selectedHero.power.ToString ();
 
 		heroName.text = Model.selectedHero.name;
 
