@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class ManageHeroButton : MonoBehaviour {
 
 	public void OnClick(int slotIndex) {
-		CurrentHero.hero = Player.dropTeam [slotIndex].hero;
-		print ("Managing hero " + CurrentHero.hero.name);
-		SceneManager.LoadScene ("ManageHero");
+		Model.selectedHero = Player.dropTeam [slotIndex].hero;
+		print ("Managing hero " + Model.selectedHero.name);
+		SceneManager.LoadScene ("ManageHero");	
 	}
 }

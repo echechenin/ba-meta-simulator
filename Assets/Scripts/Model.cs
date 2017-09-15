@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class CurrentHero {
+public static class Model {
 
-	public static Hero hero;
+	public static Hero selectedHero;
 
 }
