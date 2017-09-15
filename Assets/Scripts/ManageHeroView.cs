@@ -15,6 +15,12 @@ public class ManageHeroView : MonoBehaviour {
 	public Text defense;
 	public Text penetration;
 
+	public Text heroName;
+
+	public GameObject[] items;
+	public Text[] itemNames;
+	public Text[] itemLevels;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -33,6 +39,17 @@ public class ManageHeroView : MonoBehaviour {
 		penetration.text = Model.penetrationList [Model.selectedHero.level - 1].ToString ();
 		power.text = (Model.healthList [Model.selectedHero.level - 1] + Model.strengthList [Model.selectedHero.level - 1] * 10 / 6 +
 						Model.defenseList [Model.selectedHero.level - 1] * 10 / 6 + Model.penetrationList [Model.selectedHero.level - 1] * 10 / 6).ToString ();
+
+		heroName.text = Model.selectedHero.name;
+
+		for (int i = 0; i < items.Length; i++) {
+			if (Model.selectedHero.equippeditems [i] != null) {
+				items [i].SetActive (true);
+				itemNames [i].text = Model.selectedHero.equippeditems [i].name;
+				itemLevels [i].text = Model.selectedHero.equippeditems [i].level.ToString();
+				
+			}
+		}
 
 	}
 }

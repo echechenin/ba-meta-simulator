@@ -5,11 +5,10 @@ using UnityEngine;
 public class Hero {
 	public string name;
 	public int level;
-	public Item[] equppeditems;
+	public Item[] equippeditems= new Item[8];
 
 	public Hero(string n) {
 		name = n;
 		level = 1;
-		equppeditems = new Item[8];
 	}
 }

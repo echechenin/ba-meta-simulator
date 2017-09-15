@@ -21,6 +21,7 @@ public static class Player {
 	//starting Data
 	static Player() {
 		heroes.Add (new Hero ("Lyndra"));
+		heroes [0].equippeditems[0] = new Item ("Оружие 1, тир 1");
 		heroes.Add (new Hero ("Rosinant"));
 		dropTeam.Add (new Slot(heroes[0]));
 		dropTeam.Add (new Slot(heroes[1]));
