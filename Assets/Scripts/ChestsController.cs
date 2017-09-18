@@ -31,8 +31,9 @@ public class ChestsController : MonoBehaviour {
 		{
 			GameObject itemCardButton = Instantiate (itemCardPrefab, content.transform);
 			CardItem cardItem = itemCardButton.GetComponent<CardItem> ();
-			Debug.Log (cardItem.name);
-			cardItem.SetCardItem (new Item (itemArr[Random.Range(0,9)]), Random.Range(1,13));
+			Item item = new Item (itemArr [Random.Range (0, 9)]);
+			int value = Random.Range (1, 13);
+			cardItem.SetCardItem (item, value);
 		}
 	}
 }

@@ -19,7 +19,6 @@ public class CardItem : MonoBehaviour {
 		cardImage = GetComponent<Image> ();
 		cardText = GetComponentsInChildren<Text> ()[0];
 		string iconPath = "UI/ItemsImg/" + item.name;
-		Debug.Log (iconPath);
 		cardImage.sprite = Resources.Load<Sprite>("UI/ItemsImg/"+item.name);
 		cardText.text = "x"+cardCount.ToString ();
 	}
