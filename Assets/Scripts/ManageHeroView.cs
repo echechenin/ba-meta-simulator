@@ -16,6 +16,8 @@ public class ManageHeroView : MonoBehaviour {
 	public Text penetration;
 
 	public Text heroName;
+	public Text heroLevel;
+	public Text heroRequiredItems;
 
 	public GameObject[] items;
 	public Text[] itemNames;
@@ -40,6 +42,7 @@ public class ManageHeroView : MonoBehaviour {
 		power.text = Model.selectedHero.power.ToString ();
 
 		heroName.text = Model.selectedHero.name;
+		heroLevel.text = "Уровень " + Model.selectedHero.level.ToString();
 
 		for (int i = 0; i < items.Length; i++) {
 			if (Model.selectedHero.equippeditems [i] != null) {
