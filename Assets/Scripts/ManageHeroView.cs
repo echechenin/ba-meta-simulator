@@ -18,6 +18,7 @@ public class ManageHeroView : MonoBehaviour {
 	public Text heroName;
 	public Text heroLevel;
 	public Text heroRequiredItems;
+	public Text buttonUpgradeText;
 
 	public GameObject[] items;
 	public Text[] itemNames;
@@ -53,5 +54,12 @@ public class ManageHeroView : MonoBehaviour {
 			}
 		}
 
+		if (Player.fragmentInventory.ContainsKey (Model.selectedHero.name)) {
+			heroRequiredItems.text = Player.fragmentInventory [Model.selectedHero.name].ToString() + "/" + Model.heroLevelUpCostFragm [Model.selectedHero.level - 1].ToString();
+		} else {
+			heroRequiredItems.text = "0/" + Model.heroLevelUpCostFragm [Model.selectedHero.level - 1].ToString ();
+		}
+
+		buttonUpgradeText.text = "Улучшить " + Model.heroLevelUpCostSoft [Model.selectedHero.level - 1].ToString ();
 	}
 }
