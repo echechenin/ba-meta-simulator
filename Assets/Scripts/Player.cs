@@ -16,6 +16,7 @@ public static class Player {
 	public static List<Hero> heroes = new List<Hero>();
 	public static List<Slot> dropTeam = new List<Slot> ();
 	public static Dictionary<Item,int> inventory = new Dictionary<Item,int>();
+	public static Dictionary<Fragment,int> fragmentInventory = new Dictionary<Fragment,int>();
 
 
 	//starting Data

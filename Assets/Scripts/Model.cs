@@ -23,6 +23,8 @@ public static class Model {
 		itemsDefs.Add(new ItemDefinition("Оружие 1, тир 1", ItemType.WEAPON, 40,new int[] {},new int[]{9,18,27,36,45,54,63,72,81,90,99,108,117,126,135,144,153,162,171,180,189,198,207,216,225,234,243,252,261,270,279,288,297,306,315,324,333,342,351,360},new int[]{},new int[]{}));
 	}
 
+
+
 	public static ItemDefinition getItemDef(string name) {
 		foreach (ItemDefinition item in itemsDefs) {
 			if (name == item.name) {
