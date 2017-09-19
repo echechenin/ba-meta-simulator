@@ -7,7 +7,6 @@ public class Item {
 	public int level;
 	public ItemDefinition itemDefinition;
 
-
 	public Item(string n) {
 		name = n;
 		level = 1;
