@@ -40,4 +40,24 @@ public class Hero {
 		}
 		power = health + strength * 10 / 6 + defense * 10 / 6 + penetration * 10 / 6;
 	}
+
+	public void upgradeHero() {
+		if (!Player.fragmentInventory.ContainsKey(name)) {
+			return;
+		}
+		if ((Player.fragmentInventory [name] >= Model.heroLevelUpCostFragm [level - 1]) && (Player.softCurrency >= Model.heroLevelUpCostSoft [level - 1])) {
+			health = health + Model.healthList [level] - Model.healthList [level - 1];
+			strength = strength + Model.strengthList [level] - Model.strengthList [level - 1];
+			defense = defense + Model.defenseList [level] - Model.defenseList [level - 1];
+			penetration = penetration + Model.penetrationList [level] - Model.penetrationList [level - 1];
+			power = health + strength * 10 / 6 + defense * 10 / 6 + penetration * 10 / 6;
+			Player.fragmentInventory [name] -= Model.heroLevelUpCostFragm [level - 1];
+			Player.softCurrency -= Model.heroLevelUpCostSoft [level - 1];
+			level++;
+		} else if (Player.fragmentInventory [name] >= Model.heroLevelUpCostFragm [level - 1]) {
+			Debug.Log ("Not enough Fragments");
+		} else if (Player.softCurrency >= Model.heroLevelUpCostSoft [level - 1]) {
+			Debug.Log ("Not enough Soft Currency");
+		}
+	}
 }

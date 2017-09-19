@@ -24,6 +24,21 @@ public class ManageHeroView : MonoBehaviour {
 	public Text[] itemNames;
 	public Text[] itemLevels;
 
+	public Text heroNamePopup;
+	public Text heroLevelPopup;
+	public Text heroRequiredItemsPopup;
+	public Text healthPopup;
+	public Text healthBonusPopup;
+	public Text strengthPopup;
+	public Text strengthBonusPopup;
+	public Text defensePopup;
+	public Text defenseBonusPopup;
+	public Text penetrationPopup;
+	public Text penetrationBonusPopup;
+	public Text buttonUpgradeTextPopup;
+
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -61,5 +76,34 @@ public class ManageHeroView : MonoBehaviour {
 		}
 
 		buttonUpgradeText.text = "Улучшить " + Model.heroLevelUpCostSoft [Model.selectedHero.level - 1].ToString ();
+
+		heroNamePopup.text = heroName.text;
+		heroLevelPopup.text = heroLevel.text;
+		heroRequiredItemsPopup.text = heroRequiredItems.text;
+		healthPopup.text = Model.healthList[Model.selectedHero.level-1].ToString();
+		strengthPopup.text = Model.strengthList[Model.selectedHero.level-1].ToString();
+		defensePopup.text = Model.defenseList[Model.selectedHero.level-1].ToString();
+		penetrationPopup.text = Model.penetrationList[Model.selectedHero.level-1].ToString();
+		buttonUpgradeTextPopup.text = buttonUpgradeText.text;
+		if (Model.healthList [Model.selectedHero.level] > Model.healthList [Model.selectedHero.level - 1]) {
+			healthBonusPopup.text = "+ " + (Model.healthList [Model.selectedHero.level] - Model.healthList [Model.selectedHero.level - 1]).ToString ();
+		} else {
+			healthBonusPopup.text = "";
+		}
+		if (Model.strengthList [Model.selectedHero.level] > Model.strengthList [Model.selectedHero.level - 1]) {
+			strengthBonusPopup.text = "+ " + (Model.strengthList [Model.selectedHero.level] - Model.strengthList [Model.selectedHero.level - 1]).ToString ();
+		}else {
+			strengthBonusPopup.text = "";
+		}
+		if (Model.defenseList [Model.selectedHero.level] > Model.defenseList [Model.selectedHero.level - 1]) {
+			defenseBonusPopup.text = "+ " + (Model.defenseList [Model.selectedHero.level] - Model.defenseList [Model.selectedHero.level - 1]).ToString ();
+		}else {
+			defenseBonusPopup.text = "";
+		}
+		if (Model.penetrationList [Model.selectedHero.level] > Model.penetrationList [Model.selectedHero.level - 1]) {
+			penetrationBonusPopup.text = "+ " + (Model.penetrationList [Model.selectedHero.level] - Model.penetrationList [Model.selectedHero.level - 1]).ToString ();
+		}else {
+			penetrationBonusPopup.text = "";
+		}
 	}
 }

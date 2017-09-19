@@ -33,6 +33,7 @@ public static class Player {
 		softCurrency = 1000;
 		hardCurrency = 0;
 		league = 1;
+		Player.fragmentInventory.Add ("Линдра", 100);
 	}
 
 }
