@@ -24,15 +24,7 @@ public static class Model {
 												10000,11000,12000,13000,14000,15000,16000,17500,20000,22500,25000,27500,30000,32500,35000,37500,40000,45000};
 
 	static Model() {
-		itemsDefs.Add(new ItemDefinition("Оружие 1, тир 1", ItemType.WEAPON, 40,new int[] {},new int[] {},new int[] {},new int[] {},new int[]{9,18,27,36,45,54,63,72,81,90,99,108,117,126,135,144,153,162,171,180,189,198,207,216,225,234,243,252,261,270,279,288,297,306,315,324,333,342,351,360},new int[]{},new int[]{},new int[] {}));
-		itemsDefs.Add(new ItemDefinition("sword1_2", ItemType.WEAPON));
-		itemsDefs.Add(new ItemDefinition("sword1_3", ItemType.WEAPON));
-		itemsDefs.Add(new ItemDefinition("helmet1_1", ItemType.HELMET));
-		itemsDefs.Add(new ItemDefinition("helmet1_2", ItemType.HELMET));
-		itemsDefs.Add(new ItemDefinition("helmet1_3", ItemType.HELMET));
-		itemsDefs.Add(new ItemDefinition("armor1_1", ItemType.ARMOR));
-		itemsDefs.Add(new ItemDefinition("armor1_2", ItemType.ARMOR));
-		itemsDefs.Add(new ItemDefinition("armor1_3", ItemType.ARMOR));
+		itemsDefs.Add(new ItemDefinition("Оружие 1, тир 1", ItemType.WEAPON, 40,new int[] {},new int[]{9,18,27,36,45,54,63,72,81,90,99,108,117,126,135,144,153,162,171,180,189,198,207,216,225,234,243,252,261,270,279,288,297,306,315,324,333,342,351,360},new int[]{},new int[]{}));
 	}
 
 
