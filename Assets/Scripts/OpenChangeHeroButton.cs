@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeHeroButton : MonoBehaviour {
+public class OpenChangeHeroButton : MonoBehaviour {
 
 	private LevelManager levelManager;
 

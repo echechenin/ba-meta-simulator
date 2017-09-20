@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class GameController:MonoBehaviour {
 
-	void Awake()
-	{
-		//initialise definitions
-		Model.Init();
-		//initialise player data
-		Player.Init();
+	private static GameController gameController = null;
+
+	public static GameController Instance {
+		get
+		{
+			return gameController;
+		}
+	}
+
+	private void Awake() {
+		if (gameController == null) { 
+			gameController = this;
+			Model.Init();
+			Player.Init();
+			DontDestroyOnLoad (this.gameObject);
+		}
 	}
 }

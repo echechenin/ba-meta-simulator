@@ -53,4 +53,24 @@ public static class Player {
 	{
 		inventory.Add (name, new Item (name));
 	}
+
+	public static void ChangeHeroInDropteam(Hero oldHero, Hero newHero) {
+		foreach (Slot slot in dropTeam) {
+			if (slot.hero == oldHero) {
+				slot.hero = newHero;
+				return;
+			}
+		}
+	}
+
+	public static bool BuyHeroInDropTeam(Hero oldHero, Hero newHero) {
+		if ((Player.fragmentInventory.ContainsKey (newHero.name))
+		    && (Player.fragmentInventory [newHero.name] >= Model.heroBuyCostFragm [0])) {
+			Player.fragmentInventory [newHero.name] -= Model.heroBuyCostFragm [0];
+			Player.heroes.Add (newHero);
+			ChangeHeroInDropteam (oldHero, newHero);
+			return true;
+		}
+		return false;
+	}
 }

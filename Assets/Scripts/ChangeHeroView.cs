@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ChangeHeroView : MonoBehaviour {
-
+	public LevelManager levelManager;
 	//for visual
 	public Text softCurrencyLabel;
 	public Text hardCurrencyLabel;
@@ -68,11 +68,22 @@ public class ChangeHeroView : MonoBehaviour {
 			heroName.text = heroesInInventory [index].name;
 			changeButton.SetActive (true);
 			buyButton.SetActive (false);
-		} else if (index < (heroesInInventory.Count + availableForBuy.Count)) {
+		} else if (index < (heroesInInventory.Count + availableForBuy.Count	)) {
 			heroName.text = availableForBuy [index - heroesInInventory.Count];
 			changeButton.SetActive (false);
 			buyButton.SetActive (true);
 			buyButtonText.text = "Купить " + Model.heroBuyCostFragm[0].ToString();
+		}
+	}
+
+	public void changeHero() {
+		Player.ChangeHeroInDropteam (Model.selectedHero, heroesInInventory [index]);
+		levelManager.LoadScene ("Lobby");
+	}
+
+	public void buyHero() {
+		if (Player.BuyHeroInDropTeam (Model.selectedHero, new Hero (availableForBuy [index - heroesInInventory.Count]))) {
+			levelManager.LoadScene ("Lobby");
 		}
 	}
 }
