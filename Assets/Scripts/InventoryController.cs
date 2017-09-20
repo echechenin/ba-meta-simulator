@@ -10,6 +10,9 @@ public class InventoryController : MonoBehaviour {
 	public GameObject itemCardPrefab;
 	public GameObject inventoryTitle;
 
+	private ItemType currentInventoryFilter;
+	private int currentSlotNumber;
+
 	public void OpenInventoryForSlot(string value)
 	{
 		ItemType type = (ItemType) Enum.Parse(typeof(ItemType), value);
@@ -31,8 +34,18 @@ public class InventoryController : MonoBehaviour {
 		}
 	}
 
+	public void SetCurrentSlot(int value)
+	{
+		currentSlotNumber = value;
+	}
+
 	public void CloseInventory()
 	{
 		InventoryDialog.SetActive (false);
+	}
+
+	public void EquipItemInSlot(Item item)
+	{
+		Model.selectedHero.equipItem (item, currentSlotNumber);
 	}
 }
