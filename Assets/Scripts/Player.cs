@@ -15,12 +15,16 @@ public static class Player {
 
 	public static List<Hero> heroes = new List<Hero>();
 	public static List<Slot> dropTeam = new List<Slot> ();
-	public static Dictionary<Item,int> inventory = new Dictionary<Item,int>();
+	public static Dictionary<string,Item> inventory = new Dictionary<string,Item>();
 	public static Dictionary<string,int> fragmentInventory = new Dictionary<string,int>();
 
 
 	//starting Data
 	static Player() {
+	}
+
+	public static void Init()
+	{
 		heroes.Add (new Hero ("Линдра"));
 		heroes [0].equipItem (new Item("Оружие 1, тир 1"), 0);
 		heroes.Add (new Hero ("Росинант"));
@@ -29,6 +33,15 @@ public static class Player {
 		dropTeam.Add (new Slot ());
 		dropTeam.Add (new Slot ());
 		dropTeam.Add (new Slot ());
+		AddItemToInventory ("weapon1_1");
+		AddItemToInventory ("weapon1_2");
+		AddItemToInventory ("weapon1_3");
+		AddItemToInventory ("armor1_1");
+		AddItemToInventory ("armor1_2");
+		AddItemToInventory ("armor1_3");
+		AddItemToInventory ("helmet1_1");
+		AddItemToInventory ("helmet1_2");
+		AddItemToInventory ("helmet1_3");
 		rating = 0;
 		softCurrency = 1000;
 		hardCurrency = 0;
@@ -36,4 +49,8 @@ public static class Player {
 		Player.fragmentInventory.Add ("Линдра", 100);
 	}
 
+	public static void AddItemToInventory(string name)
+	{
+		inventory.Add (name, new Item (name));
+	}
 }

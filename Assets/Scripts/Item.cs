@@ -13,6 +13,11 @@ public class Item {
 		level = 1;
 		itemDefinition = Model.getItemDef(n);
 	}
+
+	public void AddDefinition()
+	{
+		itemDefinition = Model.getItemDef(name);
+	}
 }
 
 

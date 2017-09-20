@@ -20,7 +20,7 @@ public class CardItem : MonoBehaviour {
 //		cardImage = GetComponent<Image> ();
 		cardText = GetComponentsInChildren<Text> ()[0];
 		string iconPath = "UI/ItemsImg/" + item.name;
-//		cardImage.sprite = Resources.Load<Sprite>("UI/ItemsImg/"+item.name);
+//		cardImage.sprite = Resources.Load<Sprite>(iconPath);
 		cardText.text = "x"+cardCount.ToString ();
 	}
 
