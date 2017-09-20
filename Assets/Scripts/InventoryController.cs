@@ -25,7 +25,7 @@ public class InventoryController : MonoBehaviour {
 		}
 		foreach (Item item in Player.inventory.Values) 
 		{
-			if (item.itemDefinition.type == type) 
+			if (item.itemDefinition.type == type && !item.isEquip) 
 			{
 				GameObject itemCardButton = Instantiate (itemCardPrefab, content.transform);
 				CardItem cardItem = itemCardButton.GetComponent<CardItem> ();
@@ -47,5 +47,7 @@ public class InventoryController : MonoBehaviour {
 	public void EquipItemInSlot(Item item)
 	{
 		Model.selectedHero.equipItem (item, currentSlotNumber);
+		item.isEquip = true;
+		CloseInventory ();
 	}
 }

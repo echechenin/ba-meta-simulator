@@ -27,11 +27,11 @@ public class CardItem : MonoBehaviour {
 	}
 
 	public void openMenu() {
-		buttons.SetActive (true);
+		buttons.SetActive (!buttons.activeSelf);
 	}
 
 	public void equipItem()
 	{
-
+		GameObject.FindObjectOfType<InventoryController> ().EquipItemInSlot (itemRef);
 	}
 }
