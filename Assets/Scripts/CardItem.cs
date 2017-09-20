@@ -8,6 +8,7 @@ public class CardItem : MonoBehaviour {
 
 //	private Image cardImage;
 	private Text cardText;
+	private Item itemRef;
 
 	// Use this for initialization
 	void Start () {
@@ -20,11 +21,17 @@ public class CardItem : MonoBehaviour {
 //		cardImage = GetComponent<Image> ();
 		cardText = GetComponentsInChildren<Text> ()[0];
 		string iconPath = "UI/ItemsImg/" + item.name;
-//		cardImage.sprite = Resources.Load<Sprite>("UI/ItemsImg/"+item.name);
+//		cardImage.sprite = Resources.Load<Sprite>(iconPath);
 		cardText.text = "x"+cardCount.ToString ();
+		itemRef = item;
 	}
 
 	public void openMenu() {
 		buttons.SetActive (true);
+	}
+
+	public void equipItem()
+	{
+
 	}
 }

@@ -21,6 +21,11 @@ public class ItemDefinition {
 		bonusDefense = defense;
 		bonusPenetration = penetration;
 	}
+
+	public ItemDefinition(string n, ItemType t) {
+		name = n;
+		type = t;
+	}
 }
 
 public enum ItemType {

@@ -7,6 +7,7 @@ public static class Model {
 	public static Hero selectedHero;
 	public static Item selectedItem;
 	public static string selectedSlot;
+	public static List<ItemDefinition> itemsDefs = new List<ItemDefinition>();
 
 	public static int[] healthList = {1000,1038,1038,1038,1077,1077,1077,1115,1115,1115,1154,1154,1154,1192,1192,1192,1231,1231,1231,1269,
 							   1269,1269,1308,1308,1308,1346,1346,1346,1385,1385,1385,1423,1423,1423,1462,1462,1462,1500,1500,1500};
@@ -27,18 +28,20 @@ public static class Model {
 												10000,11000,12000,13000,14000,15000,16000,17500,20000,22500,25000,27500,30000,32500,35000,37500,40000,45000};
 
 	static Model() {
-		heroInLeague.Add ("Аттэна", 1);
-		heroInLeague.Add ("Росинант", 1);
-		heroInLeague.Add ("Дерханд", 1);
-		heroInLeague.Add ("Эрайла", 1);
-		heroInLeague.Add ("Линдра", 1);
-		heroInLeague.Add ("Караб", 2);
-		heroInLeague.Add ("Люми", 2);
-		heroInLeague.Add ("Малпайн", 3);
-		heroInLeague.Add ("Мэкси", 4);
-		heroInLeague.Add ("Хупер", 5);
+	}
 
+	public static void Init()
+	{
 		itemsDefs.Add(new ItemDefinition("Оружие 1, тир 1", ItemType.WEAPON, 40,new int[] {},new int[]{9,18,27,36,45,54,63,72,81,90,99,108,117,126,135,144,153,162,171,180,189,198,207,216,225,234,243,252,261,270,279,288,297,306,315,324,333,342,351,360},new int[]{},new int[]{}));
+		itemsDefs.Add(new ItemDefinition("weapon1_1", ItemType.WEAPON));
+		itemsDefs.Add(new ItemDefinition("weapon1_2", ItemType.WEAPON));
+		itemsDefs.Add(new ItemDefinition("weapon1_3", ItemType.WEAPON));
+		itemsDefs.Add(new ItemDefinition("armor1_1", ItemType.ARMOR));
+		itemsDefs.Add(new ItemDefinition("armor1_2", ItemType.ARMOR));
+		itemsDefs.Add(new ItemDefinition("armor1_3", ItemType.ARMOR));
+		itemsDefs.Add(new ItemDefinition("helmet1_1", ItemType.HELMET));
+		itemsDefs.Add(new ItemDefinition("helmet1_2", ItemType.HELMET));
+		itemsDefs.Add(new ItemDefinition("helmet1_3", ItemType.HELMET));
 	}
 
 

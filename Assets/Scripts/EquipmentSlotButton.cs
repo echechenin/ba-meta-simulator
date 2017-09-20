@@ -13,4 +13,10 @@ public class EquipmentSlotButton : MonoBehaviour {
 		Model.selectedSlot = slotName;
 		levelManager.LoadScene ("ChangeEquip");
 	}
+
+	public void openInventoryForSlot(ItemType itemType) {
+		//Model.selectedSlot = slotName;
+		levelManager.LoadScene ("ChangeEquip");
+
+	}
 }
