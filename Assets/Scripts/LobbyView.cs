@@ -13,6 +13,10 @@ public class LobbyView : MonoBehaviour {
 	public List<GameObject> dropTeamGO;
 	public List<Text> dropTeamGONames;
 	public List<Text> dropTeamGOLevels;
+
+	public GameObject thirdSlot;
+	public GameObject fourthSlot;
+	public GameObject fifthSlot;
 	
 	private void Update() {
 		softCurrencyLabel.text = Player.softCurrency.ToString();
@@ -27,6 +31,25 @@ public class LobbyView : MonoBehaviour {
 				dropTeamGOLevels[dropTeamGO.IndexOf (slot)].text = Player.dropTeam [dropTeamGO.IndexOf (slot)].hero.level.ToString();
 			}
 		}
+		int heroesDropTeamCount = 0;
+		foreach (Slot slot in Player.dropTeam) {
+			if (slot.hero != null) {
+				heroesDropTeamCount++;
+			} else
+				break;
+		}
+		switch (heroesDropTeamCount) {
+		case 2: 
+			thirdSlot.SetActive (true);
+			break;
+		case 3:
+			fourthSlot.SetActive (true);
+			break;
+		case 4:
+			fifthSlot.SetActive (true);
+			break;
+		}  
+
 
 	}
 }

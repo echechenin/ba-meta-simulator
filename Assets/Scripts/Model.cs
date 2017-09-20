@@ -18,12 +18,26 @@ public static class Model {
 									762, 762, 762, 785, 785, 785, 808, 808, 808, 831, 831, 831, 854, 854, 854, 877, 877, 877, 900, 900};
 	public static List<ItemDefinition> itemsDefs = new List<ItemDefinition>();
 
+	public static Dictionary<string, int> heroInLeague = new Dictionary<string,int>();
+
+
 	public static int[] heroLevelUpCostFragm = {1, 2, 4, 6, 8, 10, 12, 14, 16, 20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 80, 90, 100, 110, 120, 130, 140, 
 											150, 160, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 450};
 	public static int[] heroLevelUpCostSoft = {100,200,400,600,800,1000,1200,1400,1600,2000,2500,3000,3500,4000,4500,5000,5500,6000,7000,8000,9000,
 												10000,11000,12000,13000,14000,15000,16000,17500,20000,22500,25000,27500,30000,32500,35000,37500,40000,45000};
 
 	static Model() {
+		heroInLeague.Add ("Аттэна", 1);
+		heroInLeague.Add ("Росинант", 1);
+		heroInLeague.Add ("Дерханд", 1);
+		heroInLeague.Add ("Эрайла", 1);
+		heroInLeague.Add ("Линдра", 1);
+		heroInLeague.Add ("Караб", 2);
+		heroInLeague.Add ("Люми", 2);
+		heroInLeague.Add ("Малпайн", 3);
+		heroInLeague.Add ("Мэкси", 4);
+		heroInLeague.Add ("Хупер", 5);
+
 		itemsDefs.Add(new ItemDefinition("Оружие 1, тир 1", ItemType.WEAPON, 40,new int[] {},new int[]{9,18,27,36,45,54,63,72,81,90,99,108,117,126,135,144,153,162,171,180,189,198,207,216,225,234,243,252,261,270,279,288,297,306,315,324,333,342,351,360},new int[]{},new int[]{}));
 	}
 
