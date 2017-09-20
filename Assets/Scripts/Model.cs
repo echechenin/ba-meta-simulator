@@ -17,7 +17,6 @@ public static class Model {
 								738, 762, 762, 762, 785, 785, 785, 808, 808, 808, 831, 831, 831, 854, 854, 854, 877, 877, 877, 900};	
 	public static int[] penetrationList = {600, 600, 623, 623, 623, 646, 646, 646, 669, 669, 669, 692, 692, 692, 715, 715, 715, 738, 738, 738,
 									762, 762, 762, 785, 785, 785, 808, 808, 808, 831, 831, 831, 854, 854, 854, 877, 877, 877, 900, 900};
-	public static List<ItemDefinition> itemsDefs = new List<ItemDefinition>();
 
 	public static Dictionary<string, int> heroInLeague = new Dictionary<string,int>();
 
