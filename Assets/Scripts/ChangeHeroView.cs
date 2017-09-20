@@ -18,6 +18,7 @@ public class ChangeHeroView : MonoBehaviour {
 
 	public GameObject changeButton;
 	public GameObject buyButton;
+	public Text buyButtonText;
 
 	private int index;
 
@@ -38,7 +39,7 @@ public class ChangeHeroView : MonoBehaviour {
 				availableForBuy.Add (pair.Key);
 			}
 		}
-		openFirstHero ();
+		openHero (0);
 	}
 
 	private void Update() {
@@ -47,26 +48,31 @@ public class ChangeHeroView : MonoBehaviour {
 		ratingLabel.text = Player.rating.ToString ();
 		leagueLabel.text = "Лига " + Player.league.ToString ();
 	}
-
-	public void openFirstHero() {
-		if (heroesInInventory.Count != 0) {
-			heroName.text = heroesInInventory [0].name;
-			changeButton.SetActive (true);
-			buyButton.SetActive (false);
-		} else {
-			heroName.text = availableForBuy [0];
-			changeButton.SetActive (false);
-			buyButton.SetActive (true);
-		}
-		index = 0;
-
-	}
-
+		
 	public void showNextHero() {
-
+		index++;
+		if (index >= heroesInInventory.Count + availableForBuy.Count)
+			index = 0;
+		openHero (index);
 	}
 
 	public void showPreviousHero() {
+		index--;
+		if (index < 0)
+			index = heroesInInventory.Count + availableForBuy.Count - 1;
+		openHero (index);
+	}
 
+	private void openHero(int index) {
+		if (index < heroesInInventory.Count) {
+			heroName.text = heroesInInventory [index].name;
+			changeButton.SetActive (true);
+			buyButton.SetActive (false);
+		} else if (index < (heroesInInventory.Count + availableForBuy.Count)) {
+			heroName.text = availableForBuy [index - heroesInInventory.Count];
+			changeButton.SetActive (false);
+			buyButton.SetActive (true);
+			buyButtonText.text = "Купить " + Model.heroBuyCostFragm[0].ToString();
+		}
 	}
 }

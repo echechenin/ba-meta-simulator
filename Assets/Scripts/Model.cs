@@ -25,6 +25,7 @@ public static class Model {
 											150, 160, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 450};
 	public static int[] heroLevelUpCostSoft = {100,200,400,600,800,1000,1200,1400,1600,2000,2500,3000,3500,4000,4500,5000,5500,6000,7000,8000,9000,
 												10000,11000,12000,13000,14000,15000,16000,17500,20000,22500,25000,27500,30000,32500,35000,37500,40000,45000};
+	public static int[] heroBuyCostFragm = { 5, 25, 100, 250, 500 };
 
 	static Model() {
 	}
@@ -41,6 +42,17 @@ public static class Model {
 		itemsDefs.Add(new ItemDefinition("helmet1_1", ItemType.HELMET));
 		itemsDefs.Add(new ItemDefinition("helmet1_2", ItemType.HELMET));
 		itemsDefs.Add(new ItemDefinition("helmet1_3", ItemType.HELMET));
+
+		heroInLeague.Add ("Аттэна", 1);
+		heroInLeague.Add ("Росинант", 1);
+		heroInLeague.Add ("Дерханд", 1);
+		heroInLeague.Add ("Эрайла", 1);
+		heroInLeague.Add ("Линдра", 1);
+		heroInLeague.Add ("Караб", 2);
+		heroInLeague.Add ("Люми", 2);
+		heroInLeague.Add ("Малпайн", 3);
+		heroInLeague.Add ("Мэкси", 4);
+		heroInLeague.Add ("Хупер", 5);
 	}
 
 
