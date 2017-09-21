@@ -41,7 +41,33 @@ public class ManageHeroView : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+//		for (int i = 0; i < items.Length; i++) {
+//			if (Model.selectedHero.equippeditems [i] != null) {
+//				items [i].SetActive (true);
+//				itemNames [i].text = Model.selectedHero.equippeditems [i].name;
+//				itemLevels [i].text = Model.selectedHero.equippeditems [i].level.ToString();
+//			}
+//		}
+		int i = 0;
+		foreach (GameObject itemGO in items) {
+			if (Model.selectedHero.equippeditems [i++] != null) {
+				CardItem cardItem = itemGO.GetComponent<CardItem> ();
+				cardItem.SetCardItem (Model.selectedHero.equippeditems [i++], 0);
+			}
+		}
+
+	}
+
+	public void equipIteminView(Item item, int slotNum)
+	{
+		items [slotNum].SetActive (true);
+		CardItem cardItem = items[slotNum].GetComponent<CardItem> ();
+		cardItem.SetCardItem (item, 0);
+	}
+
+	public void UnEquipIteminView(int slotNum)
+	{
+		items [slotNum].SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -65,7 +91,6 @@ public class ManageHeroView : MonoBehaviour {
 				items [i].SetActive (true);
 				itemNames [i].text = Model.selectedHero.equippeditems [i].name;
 				itemLevels [i].text = Model.selectedHero.equippeditems [i].level.ToString();
-				
 			}
 		}
 

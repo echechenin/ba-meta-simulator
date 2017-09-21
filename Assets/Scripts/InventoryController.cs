@@ -17,6 +17,7 @@ public class InventoryController : MonoBehaviour {
 	{
 		ItemType type = (ItemType) Enum.Parse(typeof(ItemType), value);
 		InventoryDialog.SetActive (true);
+		inventoryTitle.GetComponent<Text> ().text = value;
 		GameObject content = GameObject.Find ("Content");
 		GameObject.FindObjectOfType<Text>().text = type.ToString();
 		foreach (Transform child in content.transform)
@@ -49,5 +50,16 @@ public class InventoryController : MonoBehaviour {
 		Model.selectedHero.equipItem (item, currentSlotNumber);
 		item.isEquip = true;
 		CloseInventory ();
+	}
+
+	public void ReturnItemToInventory(Item returnedItem)
+	{
+		foreach (Item item in Player.inventory.Values) 
+		{
+			if (returnedItem == item) 
+			{
+				item.isEquip = false;
+			}
+		}
 	}
 }

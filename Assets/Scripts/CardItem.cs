@@ -6,23 +6,25 @@ using UnityEngine.UI;
 public class CardItem : MonoBehaviour {
 	public GameObject buttons;
 
-//	private Image cardImage;
+	private Image cardImage;
 	private Text cardText;
 	private Item itemRef;
 
 	// Use this for initialization
 	void Start () {
-//		cardImage = GetComponent<Image> ();
+		cardImage = GetComponent<Image> ();
 		cardText = GetComponentsInChildren<Text> ()[0];
 	}
 	
 	public void SetCardItem(Item item, int cardCount)
 	{
-//		cardImage = GetComponent<Image> ();
+		cardImage = GetComponent<Image> ();
 		cardText = GetComponentsInChildren<Text> ()[0];
 		string iconPath = "UI/ItemsImg/" + item.name;
-//		cardImage.sprite = Resources.Load<Sprite>(iconPath);
+		cardImage.sprite = Resources.Load<Sprite>(iconPath);
 		cardText.text = "x"+cardCount.ToString ();
+		if (cardCount == 0)
+			cardText.text = "";	
 		itemRef = item;
 	}
 

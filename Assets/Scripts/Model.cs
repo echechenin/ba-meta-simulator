@@ -39,9 +39,9 @@ public static class Model {
 		itemsDefs.Add(new ItemDefinition("armor1_1", ItemType.ARMOR));
 		itemsDefs.Add(new ItemDefinition("armor1_2", ItemType.ARMOR));
 		itemsDefs.Add(new ItemDefinition("armor1_3", ItemType.ARMOR));
-		itemsDefs.Add(new ItemDefinition("helmet1_1", ItemType.HELMET));
-		itemsDefs.Add(new ItemDefinition("helmet1_2", ItemType.HELMET));
-		itemsDefs.Add(new ItemDefinition("helmet1_3", ItemType.HELMET));
+		itemsDefs.Add(new ItemDefinition("Шлем 1, тир 1", ItemType.HELMET));
+		itemsDefs.Add(new ItemDefinition("Шлем 1, тир 2", ItemType.HELMET));
+		itemsDefs.Add(new ItemDefinition("Шлем 1, тир 3", ItemType.HELMET));
 
 		heroInLeague.Add ("Аттэна", 1);
 		heroInLeague.Add ("Росинант", 1);

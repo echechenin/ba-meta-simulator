@@ -26,7 +26,7 @@ public static class Player {
 	public static void Init()
 	{
 		heroes.Add (new Hero ("Линдра"));
-		heroes [0].equipItem (new Item("Оружие 1, тир 1"), 0);
+		heroes [0].equipItemInModel (new Item("Оружие 1, тир 1"), 0);
 		heroes.Add (new Hero ("Росинант"));
 		dropTeam.Add (new Slot(heroes[0]));
 		dropTeam.Add (new Slot(heroes[1]));
@@ -39,9 +39,9 @@ public static class Player {
 		AddItemToInventory ("armor1_1");
 		AddItemToInventory ("armor1_2");
 		AddItemToInventory ("armor1_3");
-		AddItemToInventory ("helmet1_1");
-		AddItemToInventory ("helmet1_2");
-		AddItemToInventory ("helmet1_3");
+		AddItemToInventory ("Шлем 1, тир 1");
+		AddItemToInventory ("Шлем 1, тир 2");
+		AddItemToInventory ("Шлем 1, тир 3");
 		rating = 0;
 		softCurrency = 1000;
 		hardCurrency = 0;

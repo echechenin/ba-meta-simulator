@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hero {
 	public string name;
 	public int level;
-	public Item[] equippeditems= new Item[8];
+	public Item[] equippeditems = new Item[8];
 
 	public int power;
 	public int health;
@@ -23,7 +23,33 @@ public class Hero {
 		power = health + strength * 10 / 6 + defense * 10 / 6 + penetration * 10 / 6;
 	}
 
+	public void equipItemInModel(Item item, int index) {
+		//меняем данные в модели
+		ChangeHeroStats(item, index);
+	}
+
 	public void equipItem(Item item, int index) {
+		//Добавляем предмет в инвентарь игроку
+		equippeditems [index] = item;
+		//меняем вьюху
+		GameObject.FindObjectOfType<ManageHeroView> ().equipIteminView(item,index);
+		//меняем данные в модели
+		//ChangeHeroStats(item, index);
+	}
+
+	public void UnEquipItem(int index) {
+		//меняем вьюху
+		GameObject.FindObjectOfType<ManageHeroView> ().UnEquipIteminView(index);
+		//Пересчитываем стату в модели
+		//ChangeHeroStats(equippeditems[index], index);
+		//Говорим инвентарю, что сняли предмет
+		GameObject.FindObjectOfType<InventoryController> ().ReturnItemToInventory(equippeditems[index]);
+		//убираем ссылку на предмет из модели игрока
+		equippeditems[index] = null;
+	}
+
+	public void ChangeHeroStats(Item item, int index)
+	{
 		equippeditems [index] = item;
 		int itemLevel = item.level;
 		if (item.itemDefinition.bonusHealth.Length > 0) {
