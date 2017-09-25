@@ -25,6 +25,7 @@ public static class Player {
 
 	public static void Init()
 	{
+		//Добавление героев
 		heroes.Add (new Hero ("Линдра"));
 		heroes.Add (new Hero ("Росинант"));
 		dropTeam.Add (new Slot(heroes[0]));
@@ -32,6 +33,8 @@ public static class Player {
 		dropTeam.Add (new Slot ());
 		dropTeam.Add (new Slot ());
 		dropTeam.Add (new Slot ());
+
+		//Добавление стартовых предметов в инвентарь
 		AddItemToInventory ("Оружие 1, тир 1");
 		AddItemToInventory ("Оружие 2, тир 1");
 		AddItemToInventory ("Оружие 3, тир 1");
@@ -41,12 +44,18 @@ public static class Player {
 		AddItemToInventory ("Шлем 1, тир 1");
 		AddItemToInventory ("Шлем 2, тир 1");
 		AddItemToInventory ("Шлем 3, тир 1");
+
+		//Добавление стартовых шардов героев в инвентарь
+		fragmentInventory.Add ("Линдра", 100);
+
+		//Одевание стартовых предметов на героев
 		EquipItemInModel (0, 1, "Оружие 1, тир 1", 1);
+
+		//Стартовые значение игрока в мете
 		rating = 0;
 		softCurrency = 1000;
 		hardCurrency = 0;
 		league = 1;
-		Player.fragmentInventory.Add ("Линдра", 100);
 	}
 
 	public static void AddItemToInventory(string name)
