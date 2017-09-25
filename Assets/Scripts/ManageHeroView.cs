@@ -52,7 +52,7 @@ public class ManageHeroView : MonoBehaviour {
 		foreach (GameObject itemGO in items) {
 			if (Model.selectedHero.equippeditems [i++] != null) {
 				CardItem cardItem = itemGO.GetComponent<CardItem> ();
-				cardItem.SetCardItem (Model.selectedHero.equippeditems [i++], 0);
+				cardItem.SetCardItem (Model.selectedHero.equippeditems [i-1], 0);
 			}
 		}
 
@@ -67,6 +67,9 @@ public class ManageHeroView : MonoBehaviour {
 
 	public void UnEquipIteminView(int slotNum)
 	{
+		//говорим модели убрать элемент в инвентарь
+		Model.selectedHero.UnEquipItem(slotNum);
+		//Прячем предмет в слоте
 		items [slotNum].SetActive (false);
 	}
 	

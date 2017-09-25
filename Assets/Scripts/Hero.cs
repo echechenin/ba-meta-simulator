@@ -39,7 +39,7 @@ public class Hero {
 
 	public void UnEquipItem(int index) {
 		//меняем вьюху
-		GameObject.FindObjectOfType<ManageHeroView> ().UnEquipIteminView(index);
+		//GameObject.FindObjectOfType<ManageHeroView> ().UnEquipIteminView(index);
 		//Пересчитываем стату в модели
 		//ChangeHeroStats(equippeditems[index], index);
 		//Говорим инвентарю, что сняли предмет
