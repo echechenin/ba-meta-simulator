@@ -23,25 +23,27 @@ public class Hero {
 		power = health + strength * 10 / 6 + defense * 10 / 6 + penetration * 10 / 6;
 	}
 
-	public void equipItemInModel(Item item, int index) {
+	public void equipItemInModel(Item item, int indexSlot) {
+		//Добавляем предмет в инвентарь игроку
+		equippeditems [indexSlot] = item;
 		//меняем данные в модели
-		ChangeHeroStats(item, index);
+		ChangeHeroStats(item, indexSlot);
 	}
 
-	public void equipItem(Item item, int index) {
+	public void equipItem(Item item, int indexSlot) {
 		//Добавляем предмет в инвентарь игроку
-		equippeditems [index] = item;
+		equippeditems [indexSlot] = item;
 		//меняем вьюху
-		GameObject.FindObjectOfType<ManageHeroView> ().equipIteminView(item,index);
+		GameObject.FindObjectOfType<ManageHeroView> ().equipIteminView(item,indexSlot);
 		//меняем данные в модели
-		//ChangeHeroStats(item, index);
+		ChangeHeroStats(item, indexSlot);
 	}
 
 	public void UnEquipItem(int index) {
 		//меняем вьюху
 		//GameObject.FindObjectOfType<ManageHeroView> ().UnEquipIteminView(index);
 		//Пересчитываем стату в модели
-		//ChangeHeroStats(equippeditems[index], index);
+		ChangeHeroStats(equippeditems[index], index);
 		//Говорим инвентарю, что сняли предмет
 		GameObject.FindObjectOfType<InventoryController> ().ReturnItemToInventory(equippeditems[index]);
 		//убираем ссылку на предмет из модели игрока

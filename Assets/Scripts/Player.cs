@@ -26,7 +26,6 @@ public static class Player {
 	public static void Init()
 	{
 		heroes.Add (new Hero ("Линдра"));
-		heroes [0].equipItemInModel (new Item("Оружие 1, тир 1"), 0);
 		heroes.Add (new Hero ("Росинант"));
 		dropTeam.Add (new Slot(heroes[0]));
 		dropTeam.Add (new Slot(heroes[1]));
@@ -42,6 +41,7 @@ public static class Player {
 		AddItemToInventory ("Шлем 1, тир 1");
 		AddItemToInventory ("Шлем 2, тир 1");
 		AddItemToInventory ("Шлем 3, тир 1");
+		EquipItemInModel (0, 1, "Оружие 1, тир 1", 1);
 		rating = 0;
 		softCurrency = 1000;
 		hardCurrency = 0;
@@ -52,6 +52,16 @@ public static class Player {
 	public static void AddItemToInventory(string name)
 	{
 		inventory.Add (name, new Item (name));
+	}
+
+	public static void EquipItemInModel(int heroID, int indexSlot, string name, int level)
+	{
+		foreach (string itemName in inventory.Keys) {
+			if (itemName == name && inventory[itemName].level == level) {
+				inventory [itemName].isEquip = true;
+				heroes [heroID].equippeditems [indexSlot] = inventory [itemName];
+			}
+		}
 	}
 
 	public static void ChangeHeroInDropteam(Hero oldHero, Hero newHero) {

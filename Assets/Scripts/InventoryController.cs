@@ -45,6 +45,12 @@ public class InventoryController : MonoBehaviour {
 		InventoryDialog.SetActive (false);
 	}
 
+	public void EquipItemInSlotInModel(Item item, int indexSlot)
+	{
+		Model.selectedHero.equipItemInModel (item, indexSlot);
+		item.isEquip = true;
+	}
+
 	public void EquipItemInSlot(Item item)
 	{
 		Model.selectedHero.equipItem (item, currentSlotNumber);
