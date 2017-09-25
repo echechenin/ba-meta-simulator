@@ -47,7 +47,7 @@ public static class Model {
 //		itemsDefs.Add(new ItemDefinition("Шлем 1, тир 3", ItemType.HELMET));
 
 		itemsDefs = ItemDefinitionParser.ParseItemDefinition ();
-		ItemDefinitionParser.DebugOutputItemDefinitions (itemsDefs);
+		//ItemDefinitionParser.DebugOutputItemDefinitions (itemsDefs);
 
 		heroInLeague.Add ("Аттэна", 1);
 		heroInLeague.Add ("Росинант", 1);

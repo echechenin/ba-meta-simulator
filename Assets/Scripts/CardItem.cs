@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CardItem : MonoBehaviour {
 	public GameObject buttons;
+	public Text cardName;
+	public Text cardLevel;
 
 	private Image cardImage;
 	private Text cardText;
@@ -18,6 +20,8 @@ public class CardItem : MonoBehaviour {
 	
 	public void SetCardItem(Item item, int cardCount)
 	{
+		cardName.text = item.name;
+		cardLevel.text = item.level.ToString();
 		cardImage = GetComponent<Image> ();
 		cardText = GetComponentsInChildren<Text> ()[0];
 		string iconPath = "UI/ItemsImg/" + item.name;

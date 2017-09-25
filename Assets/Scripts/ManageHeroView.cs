@@ -69,7 +69,9 @@ public class ManageHeroView : MonoBehaviour {
 	{
 		//говорим модели убрать элемент в инвентарь
 		Model.selectedHero.UnEquipItem(slotNum);
+
 		//Прячем предмет в слоте
+		items [slotNum].GetComponent<CardItem>().openMenu();
 		items [slotNum].SetActive (false);
 	}
 	

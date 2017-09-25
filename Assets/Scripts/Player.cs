@@ -15,7 +15,7 @@ public static class Player {
 
 	public static List<Hero> heroes = new List<Hero>();
 	public static List<Slot> dropTeam = new List<Slot> ();
-	public static Dictionary<string,Item> inventory = new Dictionary<string,Item>();
+	public static List<Item> inventory = new List<Item>();
 	public static Dictionary<string,int> fragmentInventory = new Dictionary<string,int>();
 
 
@@ -42,7 +42,13 @@ public static class Player {
 		AddItemToInventory ("Броня 2, тир 1");
 		AddItemToInventory ("Броня 3, тир 1");
 		AddItemToInventory ("Шлем 1, тир 1");
+		AddItemToInventory ("Шлем 1, тир 1");
+		AddItemToInventory ("Шлем 1, тир 1");
 		AddItemToInventory ("Шлем 2, тир 1");
+		AddItemToInventory ("Шлем 2, тир 1");
+		AddItemToInventory ("Шлем 2, тир 1",2);
+		AddItemToInventory ("Шлем 2, тир 1",2);
+		AddItemToInventory ("Шлем 3, тир 1");
 		AddItemToInventory ("Шлем 3, тир 1");
 
 		//Добавление стартовых шардов героев в инвентарь
@@ -58,17 +64,17 @@ public static class Player {
 		league = 1;
 	}
 
-	public static void AddItemToInventory(string name)
+	public static void AddItemToInventory(string name, int level = 1)
 	{
-		inventory.Add (name, new Item (name));
+		inventory.Add (new Item (name, level));
 	}
 
 	public static void EquipItemInModel(int heroID, int indexSlot, string name, int level)
 	{
-		foreach (string itemName in inventory.Keys) {
-			if (itemName == name && inventory[itemName].level == level) {
-				inventory [itemName].isEquip = true;
-				heroes [heroID].equippeditems [indexSlot] = inventory [itemName];
+		foreach (Item item in inventory) {
+			if (item.name == name && item.level == level) {
+				item.isEquip = true;
+				heroes [heroID].equippeditems [indexSlot] = item;
 			}
 		}
 	}

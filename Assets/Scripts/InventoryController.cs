@@ -24,15 +24,48 @@ public class InventoryController : MonoBehaviour {
 		{
 			Destroy (child.gameObject);
 		}
-		foreach (Item item in Player.inventory.Values) 
+		List<ItemCollections> itemCollectionItems = new List<ItemCollections> ();
+		foreach (Item item in Player.inventory) 
 		{
 			if (item.itemDefinition.type == type && !item.isEquip) 
 			{
-				GameObject itemCardButton = Instantiate (itemCardPrefab, content.transform);
-				CardItem cardItem = itemCardButton.GetComponent<CardItem> ();
-				cardItem.SetCardItem (item, 1);
+				//сравниваем каждый итем с итемами в коллекции, 
+				//если есть такой же предмет с таким же уровнем, увеличиваем количество
+				//если таких предметов еще не было, создаем первый
+				if (itemCollectionItems.Count > 0 && IsCollectionContainNameLevelItem(itemCollectionItems,item))
+					foreach (ItemCollections itemCollection in itemCollectionItems) 
+					{
+						if (itemCollection.itemCollectionName == item.name && itemCollection.itemCollectionLevel == item.level) 
+						{
+							itemCollection.collectionCount++;
+							break;
+						}
+					}
+				else
+					itemCollectionItems.Add(new ItemCollections(item.name, item.level, item, 1));
 			}
 		}
+
+		foreach (ItemCollections itemCollection in itemCollectionItems) 
+		{
+			GameObject itemCardButton = Instantiate (itemCardPrefab, content.transform);
+			CardItem cardItem = itemCardButton.GetComponent<CardItem> ();
+			cardItem.SetCardItem (itemCollection.itemCollectionRef, itemCollection.collectionCount);
+		}
+	}
+
+	private bool IsCollectionContainNameLevelItem(List<ItemCollections> itemCollections, Item item)
+	{
+		bool result = false;
+		if(itemCollections.Count == 0)
+			result = false;
+		
+		foreach(ItemCollections itemColl in itemCollections)
+		{
+			if(itemColl.itemCollectionName == item.name && itemColl.itemCollectionLevel == item.level)
+				result = true; 
+		}
+		return result;
 	}
 
 	public void SetCurrentSlot(int value)
@@ -60,12 +93,28 @@ public class InventoryController : MonoBehaviour {
 
 	public void ReturnItemToInventory(Item returnedItem)
 	{
-		foreach (Item item in Player.inventory.Values) 
+		foreach (Item item in Player.inventory) 
 		{
 			if (returnedItem == item) 
 			{
 				item.isEquip = false;
 			}
 		}
+	}
+}
+
+public class ItemCollections
+{
+	public string itemCollectionName;
+	public int itemCollectionLevel;
+	public Item itemCollectionRef;
+	public int collectionCount;
+
+	public ItemCollections(string name, int level, Item item, int count)
+	{
+		itemCollectionName = name;
+		itemCollectionLevel = level;
+		itemCollectionRef = item;
+		collectionCount = count;
 	}
 }

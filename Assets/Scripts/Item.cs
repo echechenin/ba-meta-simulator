@@ -9,9 +9,9 @@ public class Item {
 	public bool isEquip;
 
 
-	public Item(string n) {
+	public Item(string n, int lvl = 1) {
 		name = n;
-		level = 1;
+		level = lvl;
 		itemDefinition = Model.getItemDef(n);
 		isEquip = false;
 	}
