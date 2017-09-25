@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemDefinition {
 	public string name;
 	public ItemType type;
+	public int league;
 	public int maxLevel;
 	public int[] bonusHealth;
 	public int[] bonusStrength;
@@ -12,9 +13,10 @@ public class ItemDefinition {
 	public int[] bonusPenetration;
 
 
-	public ItemDefinition(string n, ItemType t, int level, int[] health, int[] strength, int[] defense, int[] penetration) {
+	public ItemDefinition(string n, ItemType t, int leag, int level, int[] health, int[] strength, int[] defense, int[] penetration) {
 		name = n;
 		type = t;
+		league = leag;
 		maxLevel = level;
 		bonusHealth = health;
 		bonusStrength = strength;
