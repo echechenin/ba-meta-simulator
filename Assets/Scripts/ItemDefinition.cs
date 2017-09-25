@@ -12,9 +12,10 @@ public class ItemDefinition {
 	public int[] bonusStrength;
 	public int[] bonusDefense;
 	public int[] bonusPenetration;
+	public string passive;
 
 
-	public ItemDefinition(string n, ItemType t, int tier, int leag, int level, int[] health, int[] strength, int[] defense, int[] penetration) {
+	public ItemDefinition(string n, ItemType t, int tier, int leag, int level, int[] health, int[] strength, int[] defense, int[] penetration,string passiveAbil) {
 		name = n;
 		type = t;
 		league = leag;
@@ -23,6 +24,7 @@ public class ItemDefinition {
 		bonusStrength = strength;
 		bonusDefense = defense;
 		bonusPenetration = penetration;
+		passive = passiveAbil;
 	}
 
 	public ItemDefinition(string n, ItemType t) {
