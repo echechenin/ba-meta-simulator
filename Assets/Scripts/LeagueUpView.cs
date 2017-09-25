@@ -71,8 +71,6 @@ public class LeagueUpView : MonoBehaviour {
 
 		incomeBonus.text = "+ " + Mathf.FloorToInt ((Model.rewardCoef [Player.league] / Model.rewardCoef [Player.league - 1] - 1) * 100) + "% награда за бой";
 
-
-
 	}
 
 	private int[] calculateItemsFromChest(int league, bool isBig) {
