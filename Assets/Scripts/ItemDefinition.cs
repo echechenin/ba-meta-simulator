@@ -8,18 +8,42 @@ public class ItemDefinition {
 	public int tier;
 	public int league;
 	public int maxLevel;
+	public int[] partsForUpgrade;
+	public int[] softForUpgrade;
+	public int[] timeForUpgrade;
+	public int[] allPartOnLevel;
 	public int[] bonusHealth;
 	public int[] bonusStrength;
 	public int[] bonusDefense;
 	public int[] bonusPenetration;
-	public string passive;
+	public string[] passive;
 
 
-	public ItemDefinition(string n, ItemType t, int tier, int leag, int level, int[] health, int[] strength, int[] defense, int[] penetration,string passiveAbil) {
+	public ItemDefinition(
+		string n, ItemType t, int level, int leag, int tie, 
+		//meta
+		int[] PartsForUpgrade,
+		int[] SoftForUpgrade,
+		int[] TimeForUpgrade,
+		int[] AllPartOnLevel, 
+		//core
+		int[] health, 
+		int[] strength, 
+		int[] defense, 
+		int[] penetration,
+		string[] passiveAbil) 
+	{
 		name = n;
 		type = t;
-		league = leag;
 		maxLevel = level;
+		league = leag;
+		tier = tie;
+		//meta
+		partsForUpgrade = PartsForUpgrade;
+		softForUpgrade = SoftForUpgrade;
+		timeForUpgrade = TimeForUpgrade;
+		allPartOnLevel = AllPartOnLevel;
+		//core
 		bonusHealth = health;
 		bonusStrength = strength;
 		bonusDefense = defense;
@@ -31,6 +55,7 @@ public class ItemDefinition {
 		name = n;
 		type = t;
 	}
+
 }
 
 public enum ItemType {
