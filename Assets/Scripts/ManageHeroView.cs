@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ManageHeroView : MonoBehaviour {
+	
+
 	public Text softCurrencyLabel;
 	public Text hardCurrencyLabel;
 	public Text ratingLabel;
@@ -15,6 +17,7 @@ public class ManageHeroView : MonoBehaviour {
 	public Text defense;
 	public Text penetration;
 
+	public Image heroImage;
 	public Text heroName;
 	public Text heroLevel;
 	public Text heroRequiredItems;
@@ -37,17 +40,7 @@ public class ManageHeroView : MonoBehaviour {
 	public Text penetrationBonusPopup;
 	public Text buttonUpgradeTextPopup;
 
-
-
-	// Use this for initialization
 	void Start () {
-//		for (int i = 0; i < items.Length; i++) {
-//			if (Model.selectedHero.equippeditems [i] != null) {
-//				items [i].SetActive (true);
-//				itemNames [i].text = Model.selectedHero.equippeditems [i].name;
-//				itemLevels [i].text = Model.selectedHero.equippeditems [i].level.ToString();
-//			}
-//		}
 		int i = 0;
 		foreach (GameObject itemGO in items) {
 			if (Model.selectedHero.equippeditems [i++] != null) {
@@ -56,6 +49,7 @@ public class ManageHeroView : MonoBehaviour {
 			}
 		}
 
+		heroImage.sprite = Resources.Load<Sprite>("UI/HeroImgs/" + Model.selectedHero.name);
 	}
 
 	public void equipIteminView(Item item, int slotNum)

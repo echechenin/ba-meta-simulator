@@ -29,6 +29,7 @@ public class LobbyView : MonoBehaviour {
 				slot.SetActive(true);
 				dropTeamGONames[dropTeamGO.IndexOf (slot)].text = Player.dropTeam [dropTeamGO.IndexOf (slot)].hero.name;
 				dropTeamGOLevels[dropTeamGO.IndexOf (slot)].text = Player.dropTeam [dropTeamGO.IndexOf (slot)].hero.level.ToString();
+				slot.transform.Find("HeroPicName").transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/HeroImgs/" + Player.dropTeam [dropTeamGO.IndexOf (slot)].hero.name);
 			}
 		}
 		int heroesDropTeamCount = 0;
