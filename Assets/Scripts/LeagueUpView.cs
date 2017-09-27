@@ -49,6 +49,7 @@ public class LeagueUpView : MonoBehaviour {
 		}
 		for (int i = 0; i < items.Count; i++) {
 			newItems [i].SetActive (true);
+			newItems [i].GetComponentsInChildren<Image> () [0].sprite = Resources.Load<Sprite> ("UI/ItemsImg/" + items[i].name);
 			newItems [i].GetComponent<LeagueUpItemNameScript> ().itemName.text = items [i].name;
 			if (i == 7)
 				break;

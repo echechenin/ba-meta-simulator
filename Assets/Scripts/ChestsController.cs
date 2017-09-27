@@ -78,31 +78,46 @@ public class ChestsController : MonoBehaviour {
 	}
 
 	public void OpenBigChest() {
-		resultFragmentsCount.Add(selectRandomFromFloat(Model.smallChestRewards[Player.league][0]));
-		for (int i = 1; i < Model.smallChestRewards[Player.league].Length; i++) {
-			resultItemsCount.Add (selectRandomFromFloat (Model.smallChestRewards [Player.league][i]));
+		int chestFragmentRewards = selectRandomFromFloat (Model.bigChestRewards [Player.league] [0]);
+		int countFirst = Mathf.FloorToInt(chestFragmentRewards*Random.Range(0.4f,0.6f));
+
+		resultFragmentsCount.Add(countFirst);
+		resultFragmentsCount.Add(chestFragmentRewards-countFirst);
+
+		for (int i = 1; i < Model.bigChestRewards[Player.league].Length; i++) {
+			if (i == 1) {
+				int chestItemRewards = selectRandomFromFloat (Model.bigChestRewards [Player.league] [i]);
+				countFirst = Mathf.FloorToInt(chestItemRewards*Random.Range(0.4f,0.6f));
+				resultItemsCount.Add (countFirst);
+				resultItemsCount.Add (chestItemRewards - countFirst);
+			} else {
+				resultItemsCount.Add (selectRandomFromFloat (Model.bigChestRewards [Player.league] [i]));
+			}
 		}
+
 		SelectLowestFragments (1);
 		SelectRandomFragments (1);
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < resultItemsCount.Count; i++) {
 			if (resultItemsCount [i] > 0) {
 				switch (i) {
-				case 1:
-				case 2:
-					SelectLowerItems (1, i + 1);
-					SelectRandomItems (1, i + 1);
+				case 0:
+					SelectLowerItems (1, 1);
+					SelectRandomItems (1, 1);
+					i++;
 					break;
+				case 2:
 				case 3:
 				case 4:
 					float f = Random.Range (0f, 1f);
 					if (f < 0.5f) {
-						SelectLowerItems (1, i + 1);
+						SelectLowerItems (1, i);
 					} else {
-						SelectRandomItems (1, i + 1);
+						SelectRandomItems (1, i);
 					}
 					break;
 				}
+			
 			}
 		}
 		string fulllist = "";
