@@ -68,6 +68,13 @@ public class ManageHeroView : MonoBehaviour {
 		items [slotNum].GetComponent<CardItem>().openMenu();
 		items [slotNum].SetActive (false);
 	}
+
+	public void OpenUpgradeDialog(int indexSlot)
+	{
+		GameObject upgradeItemDialog = transform.Find ("UpgradeItemDialog").gameObject;
+		upgradeItemDialog.SetActive (true);
+		upgradeItemDialog.GetComponent<ItemUpgradeView> ().Init (Model.selectedHero.equippeditems[indexSlot]);
+	}
 	
 	// Update is called once per frame
 	void Update () {

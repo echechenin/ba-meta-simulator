@@ -101,6 +101,17 @@ public class InventoryController : MonoBehaviour {
 			}
 		}
 	}
+
+	public int GetSourceItemCount(string name)
+	{
+		int result = 0;
+		foreach (Item item in Player.inventory) {
+			if (item.name == name && item.level == 1) {
+				result++;
+			}
+		}
+		return result;
+	}
 }
 
 public class ItemCollections
