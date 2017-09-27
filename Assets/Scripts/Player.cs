@@ -18,16 +18,25 @@ public static class Player {
 	public static List<Item> inventory = new List<Item>();
 	public static Dictionary<string,int> fragmentInventory = new Dictionary<string,int>();
 
+	public static int smallChestsReady;
+	public static int bigChestProgress;
 
-	//starting Data
-	static Player() {
-	}
+	//стата по предметам
+	public static Dictionary<string,int> totalItemsCount = new Dictionary<string, int>();
+	public static Dictionary<string,int> totalFragmentsCount = new Dictionary<string,int>();
 
 	public static void Init()
 	{
 		//Добавление героев
 		heroes.Add (new Hero ("Линдра"));
+		totalFragmentsCount.Add ("Линдра", 5);
+
+		heroes [0].equipItemInModel (new Item("Оружие 1, тир 1"), 0);
+		totalItemsCount.Add ("Оружие 1, тир 1", 1);
+
 		heroes.Add (new Hero ("Росинант"));
+		totalFragmentsCount.Add ("Росинант", 5);
+
 		dropTeam.Add (new Slot(heroes[0]));
 		dropTeam.Add (new Slot(heroes[1]));
 		dropTeam.Add (new Slot ());
@@ -51,22 +60,27 @@ public static class Player {
 		AddItemToInventory ("Шлем 3, тир 1");
 		AddItemToInventory ("Шлем 3, тир 1");
 
-		//Добавление стартовых шардов героев в инвентарь
-		fragmentInventory.Add ("Линдра", 100);
-
 		//Одевание стартовых предметов на героев
 		EquipItemInModel (0, 1, "Оружие 1, тир 1", 1);
 
 		//Стартовые значение игрока в мете
 		rating = 0;
 		softCurrency = 1000;
-		hardCurrency = 0;
+		hardCurrency = 0;	
 		league = 1;
+		smallChestsReady = 1;
+		bigChestProgress = 3;
+
 	}
 
 	public static void AddItemToInventory(string name, int level = 1)
 	{
 		inventory.Add (new Item (name, level));
+		if (totalItemsCount.ContainsKey (name)) {
+			totalItemsCount [name] += 1;
+		} else {
+			totalItemsCount.Add (name, 1);
+		}
 	}
 
 	public static void EquipItemInModel(int heroID, int indexSlot, string name, int level)

@@ -32,6 +32,20 @@ public class CardItem : MonoBehaviour {
 		itemRef = item;
 	}
 
+	public void SetCardItem(string hero, int cardCount) 
+	{
+		cardName.text = hero;
+		cardLevel.text = "";
+		cardImage = GetComponent<Image> ();
+		cardText = GetComponentsInChildren<Text> () [0];
+		string iconPath = "UI/HeroIcons/" + hero;
+		cardImage.sprite = Resources.Load<Sprite> (iconPath);
+		cardText.text = "x" + cardCount.ToString ();
+		if (cardCount == 0)
+			cardText.text = "";
+		
+	}
+
 	public void openMenu() {
 		buttons.SetActive (!buttons.activeSelf);
 	}

@@ -50,7 +50,8 @@ public class LeagueUpView : MonoBehaviour {
 		for (int i = 0; i < items.Count; i++) {
 			newItems [i].SetActive (true);
 			newItems [i].GetComponent<LeagueUpItemNameScript> ().itemName.text = items [i].name;
-				
+			if (i == 7)
+				break;
 		}
 
 
