@@ -185,7 +185,7 @@ public class LobbyView : MonoBehaviour {
 								currentItemUpgCount++;
 							}
 						}
-						if (currentItemUpgCount >= Model.heroLevelUpCostFragm [currentItem.level - 1] && Player.softCurrency >= Model.heroLevelUpCostSoft[currentItem.level - 1])
+						if (currentItemUpgCount >= currentItem.itemDefinition.partsForUpgrade[currentItem.level-1] && Player.softCurrency >= currentItem.itemDefinition.softForUpgrade[currentItem.level-1])
 							itemsReadyForUpgrade.Add (currentItem);
 					}
 				}
@@ -198,7 +198,7 @@ public class LobbyView : MonoBehaviour {
 		else {
 			Item cheapest = itemsReadyForUpgrade [0];
 			for (int i = 1; i < itemsReadyForUpgrade.Count; i++) {
-				if (Model.heroLevelUpCostSoft [itemsReadyForUpgrade [i].level - 1] < Model.heroLevelUpCostSoft [cheapest.level - 1]) {
+				if (itemsReadyForUpgrade[i].itemDefinition.softForUpgrade [itemsReadyForUpgrade [i].level - 1] < cheapest.itemDefinition.softForUpgrade [cheapest.level - 1]) {
 					cheapest = itemsReadyForUpgrade [i];
 				}
 			}
@@ -247,7 +247,7 @@ public class LobbyView : MonoBehaviour {
 								currentItemUpgCount++;
 							}
 						}
-						if (currentItemUpgCount >= Model.heroLevelUpCostFragm [currentItem.level - 1])
+						if (currentItemUpgCount >= currentItem.itemDefinition.partsForUpgrade[currentItem.level-1])
 							itemsReadyForUpgrade.Add (currentItem);
 					}
 				}
@@ -260,7 +260,7 @@ public class LobbyView : MonoBehaviour {
 		else {
 			Item cheapest = itemsReadyForUpgrade [0];
 			for (int i = 1; i < itemsReadyForUpgrade.Count; i++) {
-				if (Model.heroLevelUpCostSoft [itemsReadyForUpgrade [i].level - 1] < Model.heroLevelUpCostSoft [cheapest.level - 1]) {
+				if (itemsReadyForUpgrade[i].itemDefinition.softForUpgrade [itemsReadyForUpgrade [i].level - 1] < cheapest.itemDefinition.softForUpgrade [cheapest.level - 1]) {
 					cheapest = itemsReadyForUpgrade [i];
 				}
 			}

@@ -77,7 +77,11 @@ public class ChangeHeroView : MonoBehaviour {
 			heroFragments.sprite = Resources.Load<Sprite> ("UI/HeroIcons/" + availableForBuy [index - heroesInInventory.Count]);
 			changeButton.SetActive (false);
 			buyButton.SetActive (true);
-			buyButtonText.text = "Купить " + Model.heroBuyCostFragm[0].ToString() + "x";
+			if (Player.fragmentInventory.ContainsKey(availableForBuy[index-heroesInInventory.Count])) {
+				buyButtonText.text = "Купить " + Player.fragmentInventory[availableForBuy[index-heroesInInventory.Count]].ToString() + "/" + Model.heroBuyCostFragm[0].ToString();
+			} else {
+				buyButtonText.text = "Купить " + "0/" + Model.heroBuyCostFragm[0].ToString();
+			}
 		}
 	}
 
