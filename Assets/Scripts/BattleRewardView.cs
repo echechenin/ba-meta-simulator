@@ -60,6 +60,9 @@ public class BattleRewardView : MonoBehaviour {
 			softReward = Mathf.FloorToInt(1142 * Model.rewardCoef [Player.league] * 1.5f * Random.Range(0.8f,1.2f));
 			ratingReward = 30;
 			ratingRewardValue.text = "+ " + ratingReward.ToString ();
+			if (Player.bigChestsReady > 0) {
+				Player.bigChestProgress++;
+			}
 		} else {
 			softReward = Mathf.FloorToInt(1142 * Model.rewardCoef [Player.league] * Random.Range(0.8f,1.2f));
 			ratingReward -= Mathf.FloorToInt(30 * leagueRatingLostCoef [Player.league]);

@@ -18,6 +18,7 @@ public class ChestShopView : MonoBehaviour {
 	public Text smallChestNumberOfEpics;
 	public GameObject smallChestHint;
 	public GameObject smallChestButton;
+	public GameObject secondSmallChest;
 
 
 	public Text bigChestFragments;
@@ -36,7 +37,7 @@ public class ChestShopView : MonoBehaviour {
 		int[] smallChestRewards = calculateItemsFromChest (Player.league, false);	
 		int[] bigChestRewards = calculateItemsFromChest (Player.league, true);
 
-		smallChestFragments.text = smallChestRewards[0] + "-" + smallChestRewards[1];
+		smallChestFragments.text = smallChestRewards [0] + "-" + smallChestRewards [1];
 		smallChestItems.text = smallChestRewards [2] + "-" + smallChestRewards [3];
 
 		if ((Mathf.FloorToInt (Model.smallChestRewards [Player.league] [2])) >= 1) {
@@ -53,13 +54,17 @@ public class ChestShopView : MonoBehaviour {
 		} else {
 			smallChestIfEpics.SetActive (false);
 		}
-
+			
 		if (Player.smallChestsReady == 0) {
 			smallChestHint.SetActive (true);
+			smallChestHint.GetComponent<Text> ().text = "Доступен через " + Player.timeLeftForNextSmallChest + ":00:00";
 			smallChestButton.SetActive (false);
 		} else {
 			smallChestHint.SetActive (false);
 			smallChestButton.SetActive (true);
+		}
+		if (Player.smallChestsReady == 2) {
+			secondSmallChest.SetActive (true);
 		}
 
 		bigChestFragments.text = bigChestRewards [0] + "-" + bigChestRewards [1];
@@ -80,9 +85,14 @@ public class ChestShopView : MonoBehaviour {
 			bigChestIfEpics.SetActive (false);
 		}
 			
-		if (Player.bigChestProgress < 3) {
+
+		if (Player.bigChestsReady > 0 && Player.bigChestProgress < 3) {
 			bigChestHint.SetActive (true);
-			bigChestHint.GetComponent<Text> ().text = Player.bigChestProgress + "/3";
+			bigChestHint.GetComponent<Text> ().text = "Число побед: " + Player.bigChestProgress + "/3";
+			bigChestButton.SetActive (false);
+		} else if (Player.bigChestsReady == 0) { 
+			bigChestHint.SetActive (true);
+			bigChestHint.GetComponent<Text> ().text = "Доступен через " + Player.timeLeftForNextBigChest + ":00:00";
 			bigChestButton.SetActive (false);
 		} else {
 			bigChestHint.SetActive (false);

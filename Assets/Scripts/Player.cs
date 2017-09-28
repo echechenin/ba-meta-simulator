@@ -18,8 +18,18 @@ public static class Player {
 	public static List<Item> inventory = new List<Item>();
 	public static Dictionary<string,int> fragmentInventory = new Dictionary<string,int>();
 
+	private const int smallChestTimer = 4;
+	private const int smallChestMaximum = 2;
 	public static int smallChestsReady;
+	public static int timeLeftForNextSmallChest;
+
+	private const int bigChestTimer = 24;
+	private const int bigChestMaximum = 2;
+	private const int bigChestRequiredWins = 3;
+	public static int bigChestsReady;
 	public static int bigChestProgress;
+	public static int timeLeftForNextBigChest;
+
 
 	//стата по предметам
 	public static Dictionary<string,int> totalItemsCount = new Dictionary<string, int>();
@@ -32,7 +42,6 @@ public static class Player {
 		totalFragmentsCount.Add ("Линдра", 5);
 
 		heroes [0].equipItemInModel (new Item("Оружие 1, тир 1"), 0);
-		totalItemsCount.Add ("Оружие 1, тир 1", 1);
 
 		heroes.Add (new Hero ("Росинант"));
 		totalFragmentsCount.Add ("Росинант", 5);
@@ -45,20 +54,6 @@ public static class Player {
 
 		//Добавление стартовых предметов в инвентарь
 		AddItemToInventory ("Оружие 1, тир 1");
-		AddItemToInventory ("Оружие 2, тир 1");
-		AddItemToInventory ("Оружие 3, тир 1");
-		AddItemToInventory ("Броня 1, тир 1");
-		AddItemToInventory ("Броня 2, тир 1");
-		AddItemToInventory ("Броня 3, тир 1");
-		AddItemToInventory ("Шлем 1, тир 1");
-		AddItemToInventory ("Шлем 1, тир 1");
-		AddItemToInventory ("Шлем 1, тир 1");
-		AddItemToInventory ("Шлем 2, тир 1");
-		AddItemToInventory ("Шлем 2, тир 1");
-		AddItemToInventory ("Шлем 2, тир 1",2);
-		AddItemToInventory ("Шлем 2, тир 1",2);
-		AddItemToInventory ("Шлем 3, тир 1");
-		AddItemToInventory ("Шлем 3, тир 1");
 
 		//Одевание стартовых предметов на героев
 		EquipItemInModel (0, 1, "Оружие 1, тир 1", 1);
@@ -69,7 +64,11 @@ public static class Player {
 		hardCurrency = 0;	
 		league = 1;
 		smallChestsReady = 1;
-		bigChestProgress = 3;
+		timeLeftForNextSmallChest = 4;
+		bigChestsReady = 1;
+		bigChestProgress = 0;
+		timeLeftForNextBigChest = 24;
+
 
 	}
 
@@ -111,5 +110,32 @@ public static class Player {
 			return true;
 		}
 		return false;
+	}
+
+	public static void SkipTime(int hours) {
+		if (smallChestsReady < smallChestMaximum) {
+			timeLeftForNextSmallChest -= hours;
+			for (int i = 0; i < (smallChestMaximum-smallChestsReady); i++) {
+				if (timeLeftForNextSmallChest <= 0) {
+					smallChestsReady++;
+					timeLeftForNextSmallChest += smallChestTimer;
+				}
+			}
+			if (smallChestsReady == smallChestMaximum)
+				timeLeftForNextSmallChest = smallChestTimer;
+		}
+
+		if (bigChestsReady < bigChestMaximum) {
+			timeLeftForNextBigChest -= hours;
+			for (int i = 0; i < (bigChestMaximum-bigChestsReady); i++) {
+				if (timeLeftForNextBigChest <= 0) {
+					bigChestsReady++;
+					timeLeftForNextBigChest += bigChestTimer;
+				}
+			}
+			if (bigChestsReady == bigChestMaximum)
+				timeLeftForNextBigChest = bigChestTimer;
+		}
+			
 	}
 }

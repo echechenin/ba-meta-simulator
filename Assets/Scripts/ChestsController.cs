@@ -75,6 +75,7 @@ public class ChestsController : MonoBehaviour {
 		}
 		Debug.Log (fulllist);
 		OpenChest();
+		Player.smallChestsReady--;
 	}
 
 	public void OpenBigChest() {
@@ -129,6 +130,8 @@ public class ChestsController : MonoBehaviour {
 		}
 		Debug.Log (fulllist);
 		OpenChest();
+		Player.bigChestsReady--;
+		Player.bigChestProgress = 0;
 	}
 
 
