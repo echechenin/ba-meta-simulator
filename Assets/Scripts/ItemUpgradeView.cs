@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ItemUpgradeView : MonoBehaviour {
 
+	private Item currentItem;
+
 	public InventoryController inventoryController;
 	public Image itemImage;
 	public Image itemImageSmall;
@@ -25,12 +27,13 @@ public class ItemUpgradeView : MonoBehaviour {
 
 	public void Init(Item item)
 	{
+		currentItem = item;
 		itemNameTitle.text = item.name;
 		itemImage.sprite = Resources.Load<Sprite> ("UI/ItemsImg/" + item.name);
 		itemImageSmall.sprite = Resources.Load<Sprite> ("UI/ItemsImg/" + item.name);
 		dialogTitle.text = "Улучшить <b>" + item.name + "</b> до <b>" + (item.level + 1).ToString () + "</b> уровня";
 		itemLevel.text = "Текущий уровень: " + item.level.ToString();
-		itemRequiredSourceItems.text = item.itemDefinition.partsForUpgrade [item.level] + " / " + inventoryController.GetSourceItemCount (item.name);
+		itemRequiredSourceItems.text = inventoryController.GetSourceItemCount (item.name) + " / " + item.itemDefinition.partsForUpgrade [item.level];
 
 		healthTitle.text = item.itemDefinition.bonusHealth [item.level - 1].ToString();
 		healthBonusTitle.text = "+" + (item.itemDefinition.bonusHealth [item.level] - item.itemDefinition.bonusHealth [item.level - 1]).ToString();
@@ -49,6 +52,16 @@ public class ItemUpgradeView : MonoBehaviour {
 
 	public void UpgradeCurrentItem()
 	{
-
+		if ((inventoryController.GetSourceItemCount (currentItem.name) >= Model.heroLevelUpCostFragm [currentItem.level]) && (Player.softCurrency >= Model.heroLevelUpCostSoft [currentItem.level])) 
+		{
+			inventoryController.DeleteSourceItemFromInventory(currentItem.name,currentItem.itemDefinition.partsForUpgrade[currentItem.level]);
+			Player.softCurrency -= Model.heroLevelUpCostSoft [currentItem.level];
+			currentItem.level++;
+			Init (currentItem);
+		} else if (Player.fragmentInventory [name] >= Model.heroLevelUpCostFragm [currentItem.level - 1]) {
+			Debug.Log ("Not enough source items: " + currentItem.name);
+		} else if (Player.softCurrency >= Model.heroLevelUpCostSoft [currentItem.level - 1]) {
+			Debug.Log ("Not enough Soft Currency");
+		}
 	}
 }

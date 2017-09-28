@@ -106,11 +106,23 @@ public class InventoryController : MonoBehaviour {
 	{
 		int result = 0;
 		foreach (Item item in Player.inventory) {
-			if (item.name == name && item.level == 1) {
+			if (item.name == name && item.level == 1 && !item.isEquip) {
 				result++;
 			}
 		}
 		return result;
+	}
+
+	public void DeleteSourceItemFromInventory(string name, int count)
+	{
+		if (GetSourceItemCount (name) < count) {
+			foreach (Item item in Player.inventory) {
+				if (item.name == name && item.level == 1 && count > 0) {
+					Player.inventory.Remove (item);
+					count--;
+				}
+			}
+		}
 	}
 }
 
