@@ -12,6 +12,8 @@ public class ChangeHeroView : MonoBehaviour {
 	public Text leagueLabel;
 
 	public Text heroName;
+	public Image heroImage;
+	public Image heroFragments;
 
 	private List<Hero> heroesInInventory = new List<Hero>();
 	private List<string> availableForBuy = new List<string>();
@@ -66,13 +68,16 @@ public class ChangeHeroView : MonoBehaviour {
 	private void openHero(int index) {
 		if (index < heroesInInventory.Count) {
 			heroName.text = heroesInInventory [index].name;
+			heroImage.sprite = Resources.Load<Sprite> ("UI/HeroImgs/" + heroesInInventory [index].name);
 			changeButton.SetActive (true);
 			buyButton.SetActive (false);
 		} else if (index < (heroesInInventory.Count + availableForBuy.Count	)) {
 			heroName.text = availableForBuy [index - heroesInInventory.Count];
+			heroImage.sprite = Resources.Load<Sprite> ("UI/HeroImgs/" + availableForBuy [index - heroesInInventory.Count]);
+			heroFragments.sprite = Resources.Load<Sprite> ("UI/HeroIcons/" + availableForBuy [index - heroesInInventory.Count]);
 			changeButton.SetActive (false);
 			buyButton.SetActive (true);
-			buyButtonText.text = "Купить " + Model.heroBuyCostFragm[0].ToString();
+			buyButtonText.text = "Купить " + Model.heroBuyCostFragm[0].ToString() + "x";
 		}
 	}
 
