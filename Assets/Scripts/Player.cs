@@ -41,8 +41,6 @@ public static class Player {
 		heroes.Add (new Hero ("Линдра"));
 		totalFragmentsCount.Add ("Линдра", 5);
 
-		heroes [0].equipItemInModel (new Item("Оружие 1, тир 1"), 0);
-
 		heroes.Add (new Hero ("Росинант"));
 		totalFragmentsCount.Add ("Росинант", 5);
 
