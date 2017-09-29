@@ -54,4 +54,10 @@ public class CardItem : MonoBehaviour {
 	{
 		GameObject.FindObjectOfType<InventoryController> ().EquipItemInSlot (itemRef);
 	}
+
+	public void disassembleItem()
+	{
+		if(itemRef.level > 1) 
+			GameObject.FindObjectOfType<InventoryController> ().DisassembleItem (itemRef);
+	}
 }

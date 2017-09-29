@@ -52,15 +52,20 @@ public class ItemUpgradeView : MonoBehaviour {
 
 	public void UpgradeCurrentItem()
 	{
-		if ((inventoryController.GetSourceItemCount (currentItem.name) >= Model.heroLevelUpCostFragm [currentItem.level]) && (Player.softCurrency >= Model.heroLevelUpCostSoft [currentItem.level])) 
+		Debug.Log (inventoryController.GetSourceItemCount (currentItem.name).ToString() + "/" + currentItem.itemDefinition.partsForUpgrade [currentItem.level]); 
+		if ((inventoryController.GetSourceItemCount (currentItem.name) >= currentItem.itemDefinition.partsForUpgrade [currentItem.level]) && (Player.softCurrency >= currentItem.itemDefinition.softForUpgrade [currentItem.level])) 
 		{
+			//улучшаем предмет, вычитаем валюты и айтемы
 			inventoryController.DeleteSourceItemFromInventory(currentItem.name,currentItem.itemDefinition.partsForUpgrade[currentItem.level]);
-			Player.softCurrency -= Model.heroLevelUpCostSoft [currentItem.level];
+			Player.softCurrency -= currentItem.itemDefinition.softForUpgrade [currentItem.level];
 			currentItem.level++;
+			//обновляем вьюхи
+			if(inventoryController.InventoryDialog.activeSelf)
+				inventoryController.OpenInventoryForSlot(currentItem.itemDefinition.type.ToString());
 			Init (currentItem);
-		} else if (Player.fragmentInventory [name] >= Model.heroLevelUpCostFragm [currentItem.level - 1]) {
+		} else if (inventoryController.GetSourceItemCount (currentItem.name) < currentItem.itemDefinition.partsForUpgrade [currentItem.level]) {
 			Debug.Log ("Not enough source items: " + currentItem.name);
-		} else if (Player.softCurrency >= Model.heroLevelUpCostSoft [currentItem.level - 1]) {
+		} else if (Player.softCurrency < currentItem.itemDefinition.softForUpgrade [currentItem.level]) {
 			Debug.Log ("Not enough Soft Currency");
 		}
 	}
