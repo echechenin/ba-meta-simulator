@@ -38,9 +38,6 @@ public class ChestsController : MonoBehaviour {
 				totalItemsCount.Add (item.name, Player.totalItemsCount [item.name]);
 			}
 		}
-		foreach (KeyValuePair<string, int> pair in totalItemsCount) {
-			Debug.Log (pair.Key);
-		}
 	}
 
 	public void OpenSmallChest() {
@@ -49,6 +46,8 @@ public class ChestsController : MonoBehaviour {
 		for (int i = 1; i < Model.smallChestRewards[Player.league].Length; i++) {
 			resultItemsCount.Add (selectRandomFromFloat (Model.smallChestRewards [Player.league][i]));
 		}
+
+
 
 		float f = Random.Range(0f, 1f);
 		if (f < 0.5f) {
@@ -136,9 +135,14 @@ public class ChestsController : MonoBehaviour {
 
 
 	private int selectRandomFromFloat(float f) {
-		if (Random.Range(Mathf.Floor(f),Mathf.Ceil(f)) < f) {
+		//string s = Mathf.Floor(f) + "-" + Mathf.Ceil(f);
+		float random = Random.Range(Mathf.Floor(f),Mathf.Ceil(f));
+		//s += "  randomed - " + random;
+		if (random > f) {
+			//Debug.Log(s + " returned " + Mathf.FloorToInt(f));
 			return Mathf.FloorToInt(f);
 		} else {
+			//Debug.Log(s + " returned " + Mathf.CeilToInt(f));
 			return Mathf.CeilToInt(f);
 		}
 	}
@@ -268,6 +272,7 @@ public class ChestsController : MonoBehaviour {
 			} else {
 				Player.totalItemsCount.Add (resultItems [i], resultItemsCount [i]);
 			}
+
 
 		}
 

@@ -50,6 +50,7 @@ public class ManageHeroView : MonoBehaviour {
 		}
 
 		heroImage.sprite = Resources.Load<Sprite>("UI/HeroImgs/" + Model.selectedHero.name);
+		Model.selectedHero.calculateHeroStats ();
 	}
 
 	public void equipIteminView(Item item, int slotNum)

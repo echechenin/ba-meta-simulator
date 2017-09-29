@@ -174,8 +174,8 @@ public class LobbyView : MonoBehaviour {
 	private Item cheapestItemReadyForUpgrade() {
 		List<Item> itemsReadyForUpgrade = new List<Item> ();
 		foreach (Slot slot in Player.dropTeam) {
-			if (slot.hero != null) {
-				Hero currenthero = slot.hero;
+			Hero currenthero = slot.hero;
+			if (currenthero != null) {
 				for (int i = 0; i < currenthero.equippeditems.Length; i++) {
 					if (currenthero.equippeditems [i] != null) {
 						Item currentItem = currenthero.equippeditems [i];
@@ -185,7 +185,7 @@ public class LobbyView : MonoBehaviour {
 								currentItemUpgCount++;
 							}
 						}
-						if (currentItemUpgCount >= currentItem.itemDefinition.partsForUpgrade[currentItem.level-1] && Player.softCurrency >= currentItem.itemDefinition.softForUpgrade[currentItem.level-1])
+						if ((currentItemUpgCount >= currentItem.itemDefinition.partsForUpgrade[currentItem.level]) && (Player.softCurrency >= currentItem.itemDefinition.softForUpgrade[currentItem.level]))	
 							itemsReadyForUpgrade.Add (currentItem);
 					}
 				}
@@ -198,7 +198,7 @@ public class LobbyView : MonoBehaviour {
 		else {
 			Item cheapest = itemsReadyForUpgrade [0];
 			for (int i = 1; i < itemsReadyForUpgrade.Count; i++) {
-				if (itemsReadyForUpgrade[i].itemDefinition.softForUpgrade [itemsReadyForUpgrade [i].level - 1] < cheapest.itemDefinition.softForUpgrade [cheapest.level - 1]) {
+				if (itemsReadyForUpgrade[i].itemDefinition.softForUpgrade [itemsReadyForUpgrade [i].level] < cheapest.itemDefinition.softForUpgrade [cheapest.level]) {
 					cheapest = itemsReadyForUpgrade [i];
 				}
 			}
@@ -247,7 +247,7 @@ public class LobbyView : MonoBehaviour {
 								currentItemUpgCount++;
 							}
 						}
-						if (currentItemUpgCount >= currentItem.itemDefinition.partsForUpgrade[currentItem.level-1])
+						if (currentItemUpgCount >= currentItem.itemDefinition.partsForUpgrade[currentItem.level])
 							itemsReadyForUpgrade.Add (currentItem);
 					}
 				}
@@ -260,7 +260,7 @@ public class LobbyView : MonoBehaviour {
 		else {
 			Item cheapest = itemsReadyForUpgrade [0];
 			for (int i = 1; i < itemsReadyForUpgrade.Count; i++) {
-				if (itemsReadyForUpgrade[i].itemDefinition.softForUpgrade [itemsReadyForUpgrade [i].level - 1] < cheapest.itemDefinition.softForUpgrade [cheapest.level - 1]) {
+				if (itemsReadyForUpgrade[i].itemDefinition.softForUpgrade [itemsReadyForUpgrade [i].level] < cheapest.itemDefinition.softForUpgrade [cheapest.level]) {
 					cheapest = itemsReadyForUpgrade [i];
 				}
 			}

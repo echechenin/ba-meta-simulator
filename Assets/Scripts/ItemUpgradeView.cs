@@ -59,6 +59,7 @@ public class ItemUpgradeView : MonoBehaviour {
 			inventoryController.DeleteSourceItemFromInventory(currentItem.name,currentItem.itemDefinition.partsForUpgrade[currentItem.level]);
 			Player.softCurrency -= currentItem.itemDefinition.softForUpgrade [currentItem.level];
 			currentItem.level++;
+			Model.selectedHero.calculateHeroStats ();
 			//обновляем вьюхи
 			if(inventoryController.InventoryDialog.activeSelf)
 				inventoryController.OpenInventoryForSlot(currentItem.itemDefinition.type.ToString());

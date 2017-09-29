@@ -16,10 +16,31 @@ public class Hero {
 	public Hero(string n) {
 		name = n;
 		level = 1;
+		calculateHeroStats();
+	}
+
+	public void calculateHeroStats() {
 		health = Model.healthList [level - 1];
 		strength = Model.strengthList [level - 1];
 		defense = Model.defenseList [level - 1];
 		penetration = Model.penetrationList [level - 1];
+		for (int i = 0; i < equippeditems.Length; i++) {
+			if (equippeditems [i] != null) {
+				ItemDefinition itemStats = equippeditems [i].itemDefinition;
+				if (itemStats.bonusHealth.Length != 0) {
+					health += itemStats.bonusHealth [equippeditems [i].level];
+				}
+				if (itemStats.bonusStrength.Length != 0) {
+					strength += itemStats.bonusStrength [equippeditems [i].level];
+				}
+				if (itemStats.bonusDefense.Length != 0) {
+					defense += itemStats.bonusDefense [equippeditems [i].level];
+				}
+				if (itemStats.bonusPenetration.Length != 0) {
+					penetration += itemStats.bonusPenetration [equippeditems [i].level];
+				}
+			}
+		}
 		power = health + strength * 10 / 6 + defense * 10 / 6 + penetration * 10 / 6;
 	}
 
@@ -27,7 +48,8 @@ public class Hero {
 		//Добавляем предмет в инвентарь игроку
 		equippeditems [indexSlot] = item;
 		//меняем данные в модели
-		ChangeHeroStats(item, indexSlot);
+		//ChangeHeroStats(item, indexSlot);
+		calculateHeroStats();
 	}
 
 	public void equipItem(Item item, int indexSlot) {
@@ -36,35 +58,53 @@ public class Hero {
 		//меняем вьюху
 		GameObject.FindObjectOfType<ManageHeroView> ().equipIteminView(item,indexSlot);
 		//меняем данные в модели
-		ChangeHeroStats(item, indexSlot);
+		//ChangeHeroStats(item, indexSlot, true);
+		calculateHeroStats();
 	}
 
 	public void UnEquipItem(int index) {
 		//меняем вьюху
 		//GameObject.FindObjectOfType<ManageHeroView> ().UnEquipIteminView(index);
 		//Пересчитываем стату в модели
-		ChangeHeroStats(equippeditems[index], index);
+		//ChangeHeroStats(equippeditems[index], index, false);
 		//Говорим инвентарю, что сняли предмет
 		GameObject.FindObjectOfType<InventoryController> ().ReturnItemToInventory(equippeditems[index]);
 		//убираем ссылку на предмет из модели игрока
 		equippeditems[index] = null;
+		calculateHeroStats ();
 	}
 
-	public void ChangeHeroStats(Item item, int index)
+	public void ChangeHeroStats(Item item, int index, bool add)
 	{
 		equippeditems [index] = item;
 		int itemLevel = item.level;
 		if (item.itemDefinition.bonusHealth.Length > 0) {
-			health += item.itemDefinition.bonusHealth [itemLevel - 1];
+			if (add) {
+				health += item.itemDefinition.bonusHealth [itemLevel - 1];
+			} else {
+				health -= item.itemDefinition.bonusHealth [itemLevel - 1];
+			}
 		}
 		if (item.itemDefinition.bonusStrength.Length > 0) {
-			strength += item.itemDefinition.bonusStrength [itemLevel - 1];
+			if (add) {
+				strength += item.itemDefinition.bonusStrength [itemLevel - 1];
+			} else {
+				strength -= item.itemDefinition.bonusStrength [itemLevel - 1];
+			}
 		}
 		if (item.itemDefinition.bonusDefense.Length > 0) {
-			defense += item.itemDefinition.bonusDefense [itemLevel - 1];
+			if (add) {
+				defense += item.itemDefinition.bonusDefense [itemLevel - 1];
+			} else {
+				defense -= item.itemDefinition.bonusDefense [itemLevel - 1];
+			}
 		}
 		if (item.itemDefinition.bonusPenetration.Length > 0) {
-			penetration += item.itemDefinition.bonusPenetration [itemLevel - 1];
+			if (add) {
+				penetration += item.itemDefinition.bonusPenetration [itemLevel - 1];
+			} else {
+				penetration -= item.itemDefinition.bonusPenetration [itemLevel - 1];
+			}
 		}
 		power = health + strength * 10 / 6 + defense * 10 / 6 + penetration * 10 / 6;
 	}
@@ -74,14 +114,10 @@ public class Hero {
 			return;
 		}
 		if ((Player.fragmentInventory [name] >= Model.heroLevelUpCostFragm [level - 1]) && (Player.softCurrency >= Model.heroLevelUpCostSoft [level - 1])) {
-			health = health + Model.healthList [level] - Model.healthList [level - 1];
-			strength = strength + Model.strengthList [level] - Model.strengthList [level - 1];
-			defense = defense + Model.defenseList [level] - Model.defenseList [level - 1];
-			penetration = penetration + Model.penetrationList [level] - Model.penetrationList [level - 1];
-			power = health + strength * 10 / 6 + defense * 10 / 6 + penetration * 10 / 6;
 			Player.fragmentInventory [name] -= Model.heroLevelUpCostFragm [level - 1];
 			Player.softCurrency -= Model.heroLevelUpCostSoft [level - 1];
 			level++;
+			calculateHeroStats ();
 		} else if (Player.fragmentInventory [name] >= Model.heroLevelUpCostFragm [level - 1]) {
 			Debug.Log ("Not enough Fragments");
 		} else if (Player.softCurrency >= Model.heroLevelUpCostSoft [level - 1]) {
