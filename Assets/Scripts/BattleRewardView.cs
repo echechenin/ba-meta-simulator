@@ -12,8 +12,6 @@ public class BattleRewardView : MonoBehaviour {
 	private int softReward;
 	private int ratingReward;
 
-	private Dictionary<int, int> leagueRating = new Dictionary<int, int> ();
-	private Dictionary<int, float> leagueRatingLostCoef = new Dictionary<int, float>();
 
 	private LevelManager levelManager;
 
@@ -26,24 +24,9 @@ public class BattleRewardView : MonoBehaviour {
 		} else {
 			result = false;
 		}
-
-
-		leagueRatingLostCoef.Add (1, 0.1f);
-		leagueRatingLostCoef.Add (2, 0.2f);
-		leagueRatingLostCoef.Add (3, 0.3f);
-		leagueRatingLostCoef.Add (4, 0.5f);
-		leagueRatingLostCoef.Add (5, 0.7f);
-		leagueRatingLostCoef.Add (6, 0.9f);
-		leagueRatingLostCoef.Add (7, 1f);
-
-		leagueRating.Add (100, 2);
-		leagueRating.Add (250, 3);
-		leagueRating.Add (2250, 4);
-		leagueRating.Add (6250, 5);
-		leagueRating.Add (11000, 6);
-		leagueRating.Add (15000, 7);
 			
 		calculatingRewards ();
+		Statistics.battles += 1;
 	}
 	
 	// Update is called once per frame
@@ -65,7 +48,7 @@ public class BattleRewardView : MonoBehaviour {
 			}
 		} else {
 			softReward = Mathf.FloorToInt(1142 * Model.rewardCoef [Player.league] * Random.Range(0.8f,1.2f));
-			ratingReward -= Mathf.FloorToInt(30 * leagueRatingLostCoef [Player.league]);
+			ratingReward -= Mathf.FloorToInt(30 * Model.leagueRatingLostCoef [Player.league]);
 			ratingRewardValue.text = ratingReward.ToString ();
 		}
 		softRewardValue.text = "+ " + softReward.ToString ();
@@ -79,7 +62,7 @@ public class BattleRewardView : MonoBehaviour {
 	public void openNextScene() {
 
 		int newleague = 1;
-		foreach (KeyValuePair<int, int> pair in leagueRating) {
+		foreach (KeyValuePair<int, int> pair in Model.leagueRating) {
 			if (Player.rating < pair.Key) {
 				newleague = pair.Value - 1;
 				break;

@@ -28,6 +28,7 @@ public class LobbyView : MonoBehaviour {
 	public GameObject itemReadyToUpgradePanelNoSoft;
 
 
+
 	
 	private void Update() {
 		softCurrencyLabel.text = Player.softCurrency.ToString();
@@ -142,6 +143,7 @@ public class LobbyView : MonoBehaviour {
 			recommendPanel.SetActive (false);
 
 		}
+
 	}
 
 	private Hero cheapestHeroReadyForUpgrade() {
