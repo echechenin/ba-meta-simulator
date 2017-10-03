@@ -48,6 +48,11 @@ public class CardItem : MonoBehaviour {
 
 	public void openMenu() {
 		buttons.SetActive (!buttons.activeSelf);
+		if (cardLevel.text == "1") {
+			if (buttons.transform.Find ("DisassmButton") != null) {
+				buttons.transform.Find ("DisassmButton").gameObject.SetActive (false);
+			}
+		}
 	}
 
 	public void equipItem()
