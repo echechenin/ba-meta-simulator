@@ -47,6 +47,7 @@ public class Hero {
 	public void equipItemInModel(Item item, int indexSlot) {
 		//Добавляем предмет в инвентарь игроку
 		equippeditems [indexSlot] = item;
+		item.isEquip = true;
 		//меняем данные в модели
 		//ChangeHeroStats(item, indexSlot);
 		calculateHeroStats();
@@ -70,6 +71,7 @@ public class Hero {
 		//Говорим инвентарю, что сняли предмет
 		GameObject.FindObjectOfType<InventoryController> ().ReturnItemToInventory(equippeditems[index]);
 		//убираем ссылку на предмет из модели игрока
+		equippeditems[index].isEquip = false;
 		equippeditems[index] = null;
 		calculateHeroStats ();
 	}
