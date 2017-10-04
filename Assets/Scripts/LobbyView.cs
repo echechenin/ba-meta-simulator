@@ -27,7 +27,9 @@ public class LobbyView : MonoBehaviour {
 	public GameObject heroReadyToUpgradePanelNoSoft;
 	public GameObject itemReadyToUpgradePanelNoSoft;
 
-
+	public GameObject[] readyToBuyNotify;
+	public GameObject[] readyToManageNotify;
+	public GameObject chestReadyNotify;
 
 	
 	private void Update() {
@@ -141,8 +143,56 @@ public class LobbyView : MonoBehaviour {
 			itemReadyToUpgradePanelNoSoft.GetComponentsInChildren<Text> () [0].text = "Улучшите " + item.name + " до уровня " + (item.level + 1);
 		} else {
 			recommendPanel.SetActive (false);
-
 		}
+
+		if (heroesDropTeamCount < 5) {
+			foreach (KeyValuePair<string,int> pair in Player.fragmentInventory) {
+				if (pair.Value >= Model.heroBuyCostFragm [0]) {
+						readyToBuyNotify [heroesDropTeamCount].SetActive (true);
+				}
+			}
+		}
+
+		for (int i = 0; i < Player.dropTeam.Count; i++) {
+			if (checkingIfHeroCanBeManaged (i)) {
+				readyToManageNotify [i].SetActive (true);
+			}
+		}
+
+		if (Player.smallChestsReady > 0 || (Player.bigChestsReady > 0 && Player.bigChestProgress >= 3))
+			chestReadyNotify.SetActive (true);
+
+	}
+
+	private bool checkingIfHeroCanBeManaged(int slotIndex) {
+		if (Player.dropTeam [slotIndex].hero != null) {
+			Hero hero = Player.dropTeam [slotIndex].hero;
+			if (Player.fragmentInventory.ContainsKey (hero.name) && Player.fragmentInventory [hero.name] >= Model.heroLevelUpCostFragm [hero.level - 1] && Player.softCurrency >= Model.heroLevelUpCostSoft [hero.level - 1]) {
+				return true;
+			}
+			for (int j = 0; j < hero.equippeditems.Length; j++) {
+				if (hero.equippeditems [j] == null) {
+					ItemType slotType = Model.slotTypes [j];
+					foreach (Item item in Player.inventory) {
+						if (item.itemDefinition.type == slotType && item.isEquip == false) {
+							return true;
+						}
+					}
+				} else {
+					Item currentItem = hero.equippeditems [j];
+					int currentItemUpgCount = 0;
+					foreach (Item item in Player.inventory) {
+						if (item.name == currentItem.name && item.level == 1 && item.isEquip == false) {
+							currentItemUpgCount++;
+						}
+					}
+					if ((currentItemUpgCount >= currentItem.itemDefinition.partsForUpgrade [currentItem.level]) && (Player.softCurrency >= currentItem.itemDefinition.softForUpgrade [currentItem.level])) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 
 	}
 

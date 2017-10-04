@@ -40,6 +40,9 @@ public class ManageHeroView : MonoBehaviour {
 	public Text penetrationBonusPopup;
 	public Text buttonUpgradeTextPopup;
 
+	public GameObject[] canBeEquipped;
+	public GameObject[] canBeUpgraded;
+
 	void Start () {
 		int i = 0;
 		foreach (GameObject itemGO in items) {
@@ -136,6 +139,32 @@ public class ManageHeroView : MonoBehaviour {
 			penetrationBonusPopup.text = "+ " + (Model.penetrationList [Model.selectedHero.level] - Model.penetrationList [Model.selectedHero.level - 1]).ToString ();
 		}else {
 			penetrationBonusPopup.text = "";
+		}
+
+		for (int i = 0; i < Model.selectedHero.equippeditems.Length; i++) {
+			if (Model.selectedHero.equippeditems [i] == null) {
+				ItemType slotType = Model.slotTypes [i];
+				foreach (Item item in Player.inventory) {
+					if (item.itemDefinition.type == slotType && item.isEquip == false) {
+						canBeEquipped [i].SetActive (true);
+						break;
+					}
+					canBeEquipped [i].SetActive (false);
+				}
+			} else {
+				Item currentItem = Model.selectedHero.equippeditems [i];
+				int currentItemUpgCount = 0;
+				foreach (Item item in Player.inventory) {
+					if (item.name == currentItem.name && item.level == 1 && item.isEquip == false) {
+						currentItemUpgCount++;
+					}
+				}
+				if ((currentItemUpgCount >= currentItem.itemDefinition.partsForUpgrade [currentItem.level]) && (Player.softCurrency >= currentItem.itemDefinition.softForUpgrade [currentItem.level])) {
+					canBeUpgraded [i].SetActive (true);
+				} else {
+					canBeUpgraded [i].SetActive (false);
+				}
+			}
 		}
 	}
 }

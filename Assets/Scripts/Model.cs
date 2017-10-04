@@ -35,6 +35,16 @@ public static class Model {
 	public static Dictionary<int, int> leagueRating = new Dictionary<int, int> ();
 	public static Dictionary<int, float> leagueRatingLostCoef = new Dictionary<int, float>();
 
+	public static ItemType[] slotTypes = {
+		ItemType.HELMET,
+		ItemType.WEAPON,
+		ItemType.WEAPON,
+		ItemType.BOOTS,
+		ItemType.AMULET,
+		ItemType.ARMOR,
+		ItemType.GLOVES,
+		ItemType.PANTS
+	};
 
 	public static void Init()
 	{
