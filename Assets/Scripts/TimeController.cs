@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour {
 
-	public void Skip4Hours() {	
-		Player.SkipTime (4);
-		Statistics.timepassed += 4;
+	public void SkipHours(int count) {	
+		Player.SkipTime (count);
+		Statistics.timepassed += count;
 		Statistics.sessions += 1;
 	}
-}
+
+
+}	

@@ -113,7 +113,8 @@ public static class Player {
 	public static void SkipTime(int hours) {
 		if (smallChestsReady < smallChestMaximum) {
 			timeLeftForNextSmallChest -= hours;
-			for (int i = 0; i < (smallChestMaximum-smallChestsReady); i++) {
+			int x = smallChestsReady;
+			for (int i = 0; i < (smallChestMaximum-x); i++) {
 				if (timeLeftForNextSmallChest <= 0) {
 					smallChestsReady++;
 					timeLeftForNextSmallChest += smallChestTimer;
@@ -125,7 +126,8 @@ public static class Player {
 
 		if (bigChestsReady < bigChestMaximum) {
 			timeLeftForNextBigChest -= hours;
-			for (int i = 0; i < (bigChestMaximum-bigChestsReady); i++) {
+			int x = bigChestsReady;
+			for (int i = 0; i < (bigChestMaximum-x); i++) {
 				if (timeLeftForNextBigChest <= 0) {
 					bigChestsReady++;
 					timeLeftForNextBigChest += bigChestTimer;
