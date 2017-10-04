@@ -79,6 +79,7 @@ public class ManageHeroView : MonoBehaviour {
 		upgradeItemDialog.SetActive (true);
 		upgradeItemDialog.GetComponent<ItemUpgradeView> ().Init (Model.selectedHero.equippeditems[indexSlot]);
 	}
+
 	
 	// Update is called once per frame
 	void Update () {

@@ -7,7 +7,7 @@ public class ItemUpgradeView : MonoBehaviour {
 
 	private Item currentItem;
 
-	public InventoryController inventoryController;
+	private InventoryController inventoryController;
 	public Image itemImage;
 	public Image itemImageSmall;
 
@@ -27,6 +27,7 @@ public class ItemUpgradeView : MonoBehaviour {
 
 	public void Init(Item item)
 	{
+		inventoryController = FindObjectOfType<InventoryController> ();
 		currentItem = item;
 		itemNameTitle.text = item.name;
 		itemImage.sprite = Resources.Load<Sprite> ("UI/ItemsImg/" + item.name);

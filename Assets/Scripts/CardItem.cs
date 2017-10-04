@@ -12,6 +12,8 @@ public class CardItem : MonoBehaviour {
 	private Text cardText;
 	private Item itemRef;
 
+	public GameObject upgradePopup;
+
 	// Use this for initialization
 	void Start () {
 		cardImage = GetComponent<Image> ();
@@ -64,5 +66,14 @@ public class CardItem : MonoBehaviour {
 	{
 		if(itemRef.level > 1) 
 			GameObject.FindObjectOfType<InventoryController> ().DisassembleItem (itemRef);
+	}
+
+	public void openInfo() {
+		GameObject upgradeDialog = Instantiate (upgradePopup,this.transform.parent.parent.parent.parent.parent);
+		upgradeDialog.SetActive (true);
+		upgradeDialog.GetComponent<ItemUpgradeView> ().Init (itemRef);
+		upgradeDialog.transform.Find ("UpgradeButton").gameObject.SetActive (false);
+		upgradeDialog.transform.Find ("Text").gameObject.SetActive (false);
+
 	}
 }
