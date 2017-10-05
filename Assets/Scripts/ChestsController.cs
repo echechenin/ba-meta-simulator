@@ -262,7 +262,7 @@ public class ChestsController : MonoBehaviour {
 			CardItem cardItem = itemCardButton.GetComponent<CardItem> ();
 			Item item = new Item (resultItems [i]);
 			int value = resultItemsCount [i];
-			cardItem.SetCardItem (item, value);
+			cardItem.SetChestCardItem (item, value);
 			//добавление в инвентарь
 			for (int j = 0; j < resultItemsCount [i]; j++) {
 				Player.inventory.Add (new Item (resultItems [i]));

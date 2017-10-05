@@ -52,7 +52,7 @@ public class InventoryController : MonoBehaviour {
 		{
 			GameObject itemCardButton = Instantiate (itemCardPrefab, content.transform);
 			CardItem cardItem = itemCardButton.GetComponent<CardItem> ();
-			cardItem.SetCardItem (itemCollection.itemCollectionRef, itemCollection.collectionCount);
+			cardItem.SetInventoryCardItem (itemCollection.itemCollectionRef, itemCollection.collectionCount);
 		}
 	}
 

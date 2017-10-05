@@ -25,6 +25,28 @@ public class CardItem : MonoBehaviour {
 		cardName.text = item.name;
 		cardLevel.text = item.level.ToString();
 		cardImage = GetComponent<Image> ();
+		string iconPath = "UI/ItemsImg/" + item.name;
+		cardImage.sprite = Resources.Load<Sprite>(iconPath);
+		itemRef = item;
+	}
+
+	public void SetInventoryCardItem(Item item, int cardCount)
+	{
+		cardLevel.text = item.level.ToString();
+		cardImage = GetComponent<Image> ();
+		string iconPath = "UI/ItemsImg/" + item.name;
+		cardImage.sprite = Resources.Load<Sprite>(iconPath);
+		cardName.text = "x"+cardCount.ToString ();
+		if (cardCount == 0)
+			cardText.text = "";	
+		itemRef = item;
+	}
+
+	public void SetChestCardItem(Item item, int cardCount)
+	{
+		cardName.text = item.name;
+		cardLevel.text = item.level.ToString();
+		cardImage = GetComponent<Image> ();
 		cardText = GetComponentsInChildren<Text> ()[0];
 		string iconPath = "UI/ItemsImg/" + item.name;
 		cardImage.sprite = Resources.Load<Sprite>(iconPath);
