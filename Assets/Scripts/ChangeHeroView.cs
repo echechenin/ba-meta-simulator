@@ -41,7 +41,11 @@ public class ChangeHeroView : MonoBehaviour {
 				availableForBuy.Add (pair.Key);
 			}
 		}
-		openHero (0);
+		if (Model.selectedHeroToBuy != null) {
+			openHero (0);
+		} else {
+			openHero (0);
+		}
 	}
 
 	private void Update() {
