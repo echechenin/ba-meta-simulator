@@ -24,7 +24,7 @@ public class HeroShopCardView:MonoBehaviour
 		heroImage.sprite = Resources.Load<Sprite>("UI/HeroImgs/" + _heroName);
 		heroNameText.text = name;
 		if(Player.league >= _heroLeague)
-			shardCountText.text = _heroCost.ToString () + " / " + _currentShardCount.ToString ();
+			shardCountText.text = _currentShardCount.ToString () + " / " + _heroCost.ToString ();
 		else
 			shardCountText.text = "Достигни " + _heroLeague.ToString() + " лиги";
 	}
