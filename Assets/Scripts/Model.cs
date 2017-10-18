@@ -66,11 +66,11 @@ public static class Model {
 		heroInLeague.Add ("Аттэна", 1);
 		heroInLeague.Add ("Росинант", 1);
 		heroInLeague.Add ("Дерханд", 1);
-		heroInLeague.Add ("Эрайла", 1);
+		heroInLeague.Add ("Эрайла", 1);
 		heroInLeague.Add ("Линдра", 1);
 		heroInLeague.Add ("Караб", 2);
 		heroInLeague.Add ("Люми", 2);
-		heroInLeague.Add ("Малпайн", 3);
+		heroInLeague.Add ("Скольд", 3);
 		heroInLeague.Add ("Мэкси", 4);
 		heroInLeague.Add ("Хупер", 5);
 
