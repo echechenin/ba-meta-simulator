@@ -23,9 +23,9 @@ public static class Player {
 	public static int smallChestsReady;
 	public static int timeLeftForNextSmallChest;
 
-	private const int bigChestTimer = 24;
+	private const int bigChestTimer = 8;
 	private const int bigChestMaximum = 2;
-	private const int bigChestRequiredWins = 3;
+	private const int bigChestRequiredWins = 2;
 	public static int bigChestsReady;
 	public static int bigChestProgress;
 	public static int timeLeftForNextBigChest;
@@ -65,7 +65,7 @@ public static class Player {
 		timeLeftForNextSmallChest = 4;
 		bigChestsReady = 1;
 		bigChestProgress = 0;
-		timeLeftForNextBigChest = 24;
+		timeLeftForNextBigChest = 8;
 
 
 	}

@@ -86,9 +86,9 @@ public class ChestShopView : MonoBehaviour {
 		}
 			
 
-		if (Player.bigChestsReady > 0 && Player.bigChestProgress < 3) {
+		if (Player.bigChestsReady > 0 && Player.bigChestProgress < 2) {
 			bigChestHint.SetActive (true);
-			bigChestHint.GetComponent<Text> ().text = "Число побед: " + Player.bigChestProgress + "/3";
+			bigChestHint.GetComponent<Text> ().text = "Число побед: " + Player.bigChestProgress + "/2";
 			bigChestButton.SetActive (false);
 		} else if (Player.bigChestsReady == 0) { 
 			bigChestHint.SetActive (true);

@@ -65,7 +65,7 @@ public class LobbyView : MonoBehaviour {
 			break;
 		}  
 
-		if (Player.bigChestsReady > 0 && Player.bigChestProgress >= 3) {
+		if (Player.bigChestsReady > 0 && Player.bigChestProgress >= 2) {
 			recommendPanel.SetActive (true);
 			bigChestReadyToOpenPanel.SetActive (true);
 			smallChestReadyToOpenPanel.SetActive (false);
@@ -107,7 +107,7 @@ public class LobbyView : MonoBehaviour {
 			itemReadyToUpgradePanelNoSoft.SetActive (false);
 			itemReadyToUpgradePanel.GetComponentsInChildren<Image> () [0].sprite = Resources.Load<Sprite> ("UI/ItemsImg/" + item.name);
 			itemReadyToUpgradePanel.GetComponentsInChildren<Text> () [0].text = "Улучшите " + item.name + " до уровня " + (item.level + 1);
-		} else if (Player.bigChestsReady > 0 && Player.bigChestProgress < 3) {
+		} else if (Player.bigChestsReady > 0 && Player.bigChestProgress < 2) {
 			recommendPanel.SetActive (true);
 			bigChestReadyToOpenPanel.SetActive (false);
 			smallChestReadyToOpenPanel.SetActive (false);
@@ -116,7 +116,7 @@ public class LobbyView : MonoBehaviour {
 			bigChestAlmostReadyPanel.SetActive (true);
 			heroReadyToUpgradePanelNoSoft.SetActive (false);
 			itemReadyToUpgradePanelNoSoft.SetActive (false);
-			bigChestAlmostReadyPanel.GetComponentsInChildren<Text> () [1].text = Player.bigChestProgress + "/3";
+			bigChestAlmostReadyPanel.GetComponentsInChildren<Text> () [1].text = Player.bigChestProgress + "/2";
 		} else if (cheapestHeroReadyForUpgradeNoSoft () != null) {
 			Hero hero = cheapestHeroReadyForUpgradeNoSoft ();
 			recommendPanel.SetActive (true);

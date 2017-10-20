@@ -40,14 +40,14 @@ public class BattleRewardView : MonoBehaviour {
 
 	private void calculatingRewards() {
 		if (result) {
-			softReward = Mathf.FloorToInt(1142 * Model.rewardCoef [Player.league] * 1.5f * Random.Range(0.8f,1.2f));
+			softReward = Mathf.FloorToInt(890 * Model.rewardCoef [Player.league] * 1.5f * Random.Range(0.8f,1.2f));
 			ratingReward = 30;
 			ratingRewardValue.text = "+ " + ratingReward.ToString ();
 			if (Player.bigChestsReady > 0) {
 				Player.bigChestProgress++;
 			}
 		} else {
-			softReward = Mathf.FloorToInt(1142 * Model.rewardCoef [Player.league] * Random.Range(0.8f,1.2f));
+			softReward = Mathf.FloorToInt(890 * Model.rewardCoef [Player.league] * Random.Range(0.8f,1.2f));
 			ratingReward -= Mathf.FloorToInt(30 * Model.leagueRatingLostCoef [Player.league]);
 			ratingRewardValue.text = ratingReward.ToString ();
 		}

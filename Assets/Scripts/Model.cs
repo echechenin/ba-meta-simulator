@@ -10,14 +10,14 @@ public static class Model {
 	public static string selectedHeroToBuy;
 	public static List<ItemDefinition> itemsDefs = new List<ItemDefinition>();
 
-	public static int[] healthList = {1000,1038,1038,1038,1077,1077,1077,1115,1115,1115,1154,1154,1154,1192,1192,1192,1231,1231,1231,1269,
-							   1269,1269,1308,1308,1308,1346,1346,1346,1385,1385,1385,1423,1423,1423,1462,1462,1462,1500,1500,1500};
-	public static int[] strengthList = {600, 600, 623, 623, 623, 646, 646, 646, 669, 669, 669, 692, 692, 692, 715, 715, 715, 738, 738, 738,
-								 762, 762, 762, 785, 785, 785, 808, 808, 808, 831, 831, 831, 854, 854, 854, 877, 877, 877, 900, 900};
-	public static int[] defenseList = {600, 600, 600, 623, 623, 623, 646, 646, 646, 669, 669, 669, 692, 692, 692, 715, 715, 715, 738, 738, 
-								738, 762, 762, 762, 785, 785, 785, 808, 808, 808, 831, 831, 831, 854, 854, 854, 877, 877, 877, 900};	
-	public static int[] penetrationList = {600, 600, 623, 623, 623, 646, 646, 646, 669, 669, 669, 692, 692, 692, 715, 715, 715, 738, 738, 738,
-									762, 762, 762, 785, 785, 785, 808, 808, 808, 831, 831, 831, 854, 854, 854, 877, 877, 877, 900, 900};
+	public static int[] healthList = {1000,1000,1000,1050,1050,1050,1050,1100,1100,1100,1100,1150,1150,1150,1150,1200,1200,1200,1200,1250,
+		1250,1250,1250,1300,1300,1300,1300,1350,1350,1350,1350,1400,1400,1400,1400,1450,1450,1450,1450,1500};
+	public static int[] strengthList = {600, 600, 630, 630, 630, 630, 660, 660, 660, 660, 690, 690, 690, 690, 720, 720, 720, 720, 750, 750,
+		750, 750, 780, 780, 780, 780, 810, 810, 810, 810, 840, 840, 840, 840, 870, 870, 870, 870, 900, 900};
+	public static int[] defenseList = {600, 600, 600, 600, 630, 630, 630, 630, 660, 660, 660, 660, 690, 690, 690, 690, 720, 720, 720, 720, 
+		750, 750, 750, 750, 780, 780, 780, 780, 810, 810, 810, 810, 840, 840, 840, 840, 870, 870, 870, 900};	
+	public static int[] penetrationList = {600, 630, 630, 630, 630, 660, 660, 660, 660, 690, 690, 690, 690, 720, 720, 720, 720, 750, 750, 750,
+		750, 780, 780, 780, 780, 810, 810, 810, 810, 840, 840, 840, 840, 870, 870, 870, 870, 900, 900, 900};
 
 	public static Dictionary<string, int> heroInLeague = new Dictionary<string,int>();
 
@@ -73,22 +73,22 @@ public static class Model {
 		heroInLeague.Add ("Скольд", 3);
 		heroInLeague.Add ("Мэкси", 4);
 		heroInLeague.Add ("Хупер", 5);
-
+			
 		smallChestRewards.Add (1, new float[]{ 1f, 3.5f, 0.62f, 0f, 0f });
-		smallChestRewards.Add (2, new float[]{ 1f, 4.2f, 0.75f, 0.1f, 0f });
-		smallChestRewards.Add (3, new float[]{ 1.3f, 5.25f, 1f, 0.13f, 0f });
-		smallChestRewards.Add (4, new float[]{ 1.75f, 7.0f, 1.25f, 0.18f, 0.0014f });
-		smallChestRewards.Add (5, new float[]{ 2.4f, 9.6f, 1.7f, 0.25f, 0.0019f });
-		smallChestRewards.Add (6, new float[]{ 3.3f, 13.2f, 2.4f, 0.34f, 0.0026f });
-		smallChestRewards.Add (7, new float[]{ 4.4f, 17.5f, 3.1f, 0.45f, 0, 0035f });
+		smallChestRewards.Add (2, new float[]{ 1f, 4.2f, 0.75f, 0.11f, 0f });
+		smallChestRewards.Add (3, new float[]{ 1.31f, 5.26f, 0.94f, 0.14f, 0f });
+		smallChestRewards.Add (4, new float[]{ 1.75f, 7f, 1.25f, 0.18f, 0.0014f });
+		smallChestRewards.Add (5, new float[]{ 2.4f, 9.64f, 1.72f, 0.25f, 0.0020f });
+		smallChestRewards.Add (6, new float[]{ 3.3f, 13.15f, 2.35f, 0.33f, 0.0027f });
+		smallChestRewards.Add (7, new float[]{ 4.38f, 17.5f, 3.14f, 0.45f, 0,0035f });
 
-		bigChestRewards.Add (1, new float[]{ 5.25f, 21f, 3.8f, 0f, 0f });
-		bigChestRewards.Add (2, new float[]{ 6.3f, 25.25f, 4.5f, 0.65f, 0f });
-		bigChestRewards.Add (3, new float[]{ 7.9f, 31.5f, 5.7f, 0.8f, 0f });
-		bigChestRewards.Add (4, new float[]{ 10.5f, 42f, 7.5f, 1f, 0.0085f });
-		bigChestRewards.Add (5, new float[]{ 14.5f, 58f, 10.4f, 1.5f, 0.0117f });
-		bigChestRewards.Add (6, new float[]{ 19.7f, 79f, 14.1f, 2f, 0.0160f });
-		bigChestRewards.Add (7, new float[]{ 26.3f, 105f, 18.9f, 2.7f, 0.0214f });
+		bigChestRewards.Add (1, new float[]{ 2.43f, 9.71f, 1.74f, 0f, 0f });
+		bigChestRewards.Add (2, new float[]{ 2.91f, 11.65f, 2.08f, 0.30f, 0f });
+		bigChestRewards.Add (3, new float[]{ 3.64f, 14.56f, 2.61f, 0.37f, 0f });
+		bigChestRewards.Add (4, new float[]{ 4.86f, 19.42f, 3.48f, 0.50f, 0.0039f });
+		bigChestRewards.Add (5, new float[]{ 6.68f, 26.7f, 4.78f, 0.68f, 0.0054f });
+		bigChestRewards.Add (6, new float[]{ 9.11f, 36.42f, 6.52f, 0.93f, 0.0074f });
+		bigChestRewards.Add (7, new float[]{ 12.15f, 48.56f, 8.7f, 1.24f, 0.01f });
 	
 		rewardCoef.Add (1, 1f);
 		rewardCoef.Add (2, 1.2f);
@@ -108,10 +108,10 @@ public static class Model {
 
 		leagueRating.Add (100, 2);
 		leagueRating.Add (250, 3);
-		leagueRating.Add (2250, 4);
-		leagueRating.Add (6250, 5);
-		leagueRating.Add (11000, 6);
-		leagueRating.Add (15000, 7);
+		leagueRating.Add (900, 4);	
+		leagueRating.Add (3000, 5);
+		leagueRating.Add (6000, 6);
+		leagueRating.Add (10000, 7);
 	}
 
 
